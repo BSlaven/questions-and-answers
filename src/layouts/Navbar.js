@@ -1,12 +1,10 @@
+import Button from 'react-bootstrap/Button';
+
 const Navbar = () => {
   return (
-    <nav>
+    <nav className="navbar navbar-light bg-light">
       
-      <ul>
-        <li>Slaven</li>
-        <li>Slaven</li>
-        <li>Slaven</li>
-      </ul>
+      <Button variant="primary">milojko</Button>
     </nav>
   )
 }
