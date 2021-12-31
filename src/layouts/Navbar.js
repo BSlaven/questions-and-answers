@@ -5,14 +5,12 @@ const MainNav = () => {
   return (
     <Navbar variant="dark" className="bg-dark px-3 mb-3">
       <Navbar.Brand>
-        Logo
+        <Link to="/" className="text-white text-decoration-none">Logo</Link>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="main-navbar" />
       <Navbar.Collapse id="main-navbar" className="justify-content-end">
-        <Link to="/question" className="mx-3">Question</Link>
-        <Link to="/login" className="mx-3">Login</Link>
-        <Link to="/register" className="mx-3">Register</Link>
-        <Link to="/profile" className="mx-3">Profile</Link>
+        <Link to="/login" className="mx-3 text-white text-decoration-none">Login</Link>
+        <Link to="/register" className="mx-3 text-white text-decoration-none">Register</Link>
       </Navbar.Collapse>
     </Navbar>
   )
