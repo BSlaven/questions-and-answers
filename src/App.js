@@ -1,13 +1,17 @@
-import './App.css';
-import MainNav from './layouts/Navbar.js'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import MainNav from './layouts/Navbar.js';
+import Homepage from './pages/Homepage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
+    <>
+      <BrowserRouter>
         <MainNav />
-      </header>
-    </div>
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 

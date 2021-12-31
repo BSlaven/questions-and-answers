@@ -2,7 +2,7 @@ import Navbar from 'react-bootstrap/Navbar';
 
 const MainNav = () => {
   return (
-    <Navbar variant="dark" className="bg-dark px-3">
+    <Navbar variant="dark" className="bg-dark px-3 mb-3">
       <Navbar.Brand>
         Logo
       </Navbar.Brand>
