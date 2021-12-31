@@ -1,12 +1,11 @@
 import './App.css';
-import Navbar from './layouts/Navbar.js'
+import MainNav from './layouts/Navbar.js'
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Navbar />
-
+        <MainNav />
       </header>
     </div>
   );
