@@ -9,4 +9,4 @@ const Users = ({ users }) => {
   )
 }
 
-export default Users
+export default Users;
