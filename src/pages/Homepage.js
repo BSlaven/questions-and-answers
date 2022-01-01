@@ -8,27 +8,27 @@ const Homepage = () => {
   const [ questions, setQuestions ] = useState([]);
   const [ users, setUsers ] = useState([]);
 
-  const fetchQuestions = async () => {
-    const res = await fetch('http://localhost:5000/questions');
-    const data = await res.json();    
-    setQuestions(data);
-  }
+  // const fetchQuestions = async () => {
+  //   const res = await fetch('http://localhost:5000/questions');
+  //   const data = await res.json();    
+  //   setQuestions(data);
+  // }
 
-  const fetchUsers = async () => {
-    const res = await fetch('http://localhost:5000/users');
-    const data = await res.json();    
-    setUsers(data);
-  }
+  // const fetchUsers = async () => {
+  //   const res = await fetch('http://localhost:5000/users');
+  //   const data = await res.json();    
+  //   setUsers(data);
+  // }
 
-  useEffect(() => {
-    fetchUsers();
-    console.log(users)
-  }, []);
+  // useEffect(() => {
+  //   fetchUsers();
+  //   console.log(users)
+  // }, []);
 
-  useEffect(() => {
-    fetchQuestions();
-    console.log(questions)
-  }, []);
+  // useEffect(() => {
+  //   fetchQuestions();
+  //   console.log(questions)
+  // }, []);
   
   return (
     <div className="text-center">
