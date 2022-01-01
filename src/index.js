@@ -9,13 +9,13 @@ import './index.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.css';
 import reducer from './store/reducer';
-import { watcherSaga } from './sagas/saga';
+import { fetchUserWatcher } from './sagas/saga';
 
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(reducer, applyMiddleware(sagaMiddleware));
 
-sagaMiddleware.run(watcherSaga);
+sagaMiddleware.run(fetchUserWatcher);
 
 ReactDOM.render(
   <Provider store={store}>

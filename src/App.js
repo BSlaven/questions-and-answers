@@ -1,4 +1,7 @@
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
 import MainNav from './layouts/Navbar.js';
 import Homepage from './pages/Homepage';
 import Login from './pages/Login';
@@ -7,6 +10,16 @@ import Profile from './pages/Profile';
 import Question from './pages/Question';
 
 function App() {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch({type: 'FETCH_USER'})
+  }, []);
+
+  const user = useSelector(state => state.currentUser.id);
+  console.log(user);
+  
   return (
     <>
       <BrowserRouter>
