@@ -18,12 +18,11 @@ function App() {
   }, []);
 
   const user = useSelector(state => state.currentUser.id);
-  console.log(user);
   
   return (
     <>
       <BrowserRouter>
-        <MainNav />
+        <MainNav user={user} />
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/questions/:id" element={<Question />} />
