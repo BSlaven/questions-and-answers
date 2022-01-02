@@ -1,11 +1,10 @@
-const Questions = ({ questions }) => {
+import Question from './Question';
+
+const Questions = () => {
 
   return (
-    <div>
-      <h3>Questions Component</h3>
-      <ul>
-        {questions.map(question => <li key={question.id}>{question.text}</li>)}
-      </ul>
+    <div className="col-5 m-3">
+      <h3>Questions</h3>
     </div>
   )
 }

@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { getDocs } from 'firebase/firestore';
+import { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -10,17 +9,17 @@ const Homepage = () => {
 
   const dispatch = useDispatch();
 
-  const users = useSelector(state => state.users);
-  // const questions = users.map(user => user.questions);
+  let users = useSelector(state => state.users);
 
-  useEffect(()=> {
-    dispatch({ type: 'FETCH_USERS' })
+  useEffect(() => {
+    dispatch({ type: 'FETCH_USERS'})
   }, []);
   
   return (
-    <div>
-      {/* <Questions questions={questions} /> */}
-      <Users users={users} />
+    <div className="row justify-content-around">
+      <Questions />
+
+      {<Users users={users} />}
     </div>
   )
 }
