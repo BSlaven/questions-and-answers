@@ -1,10 +1,10 @@
+import User from './User';
+
 const Users = ({ users }) => {
   return (
-    <div>
-      <h3>Users Component</h3>
-      <ul>
-        {users.map(user => <li key={user.id}>{user.name}</li>)}
-      </ul>
+    <div className="col-5 m-3">
+      <h3>Users</h3>
+      {users.map(user => <User key={user.id} user={user} />)}
     </div>
   )
 }

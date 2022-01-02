@@ -1,15 +1,13 @@
 const initialState = {
-  users: [],
-  questions: [],
-  currentUser: {}
+  users: []
 }
 
 const reducer = (state = initialState, action) => {
   const newState = state;
 
   switch (action.type) {
-    case 'FETCH_USER_ASYNC':
-      return {...newState, currentUser: action.user}
+    case 'FETCH_USERS_ASYNC':
+      return {...newState, users: action.users}
     
     default:
       return newState
