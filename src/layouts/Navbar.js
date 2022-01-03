@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 
 const MainNav = ({ user }) => {
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const logoutUser = () => {
     console.log('User logged out');
