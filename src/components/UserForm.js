@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const UserForm = () => {
 
@@ -23,7 +23,9 @@ const UserForm = () => {
 
   const formSubmitHandler = e => {
     e.preventDefault();
-    console.log(name, email, password);
+    console.log('Ovo je name: ', name);
+    console.log('Ovo je email: ', email);
+    console.log('Ovo je password: ', password);
   }
   
   return (
