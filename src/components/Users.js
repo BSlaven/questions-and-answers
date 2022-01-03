@@ -11,7 +11,7 @@ const Users = () => {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USERS'})
-  }, []);
+  }, [dispatch]);
   
   return (
     <div className="col-5 m-3 text-align-center">
