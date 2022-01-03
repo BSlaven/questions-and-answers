@@ -1,9 +1,11 @@
-const Question = () => {
+const Question = ({ question }) => {
+  
   return (
     <div className="card border-success">
-      <div class="card-body text-success">
-        <p class="card-text"></p>
+      <div className="card-body">
+        <p className="card-text">{question.text}</p>
       </div>
+      <div className="card-footer text-muted">jedna footer</div>
     </div>
   )
 }
