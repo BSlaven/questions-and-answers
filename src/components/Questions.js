@@ -1,11 +1,16 @@
-const Questions = ({ questions }) => {
+import { useSelector } from 'react-redux';
+
+import Question from './Question';
+
+const Questions = () => {
+
+  // const question = useSelector(state => state.users[0].question);
 
   return (
-    <div>
-      <h3>Questions Component</h3>
-      <ul>
-        {questions.map(question => <li key={question.id}>{question.text}</li>)}
-      </ul>
+    <div className="d-grid gap-3 col-5 m-3">
+      <h3 className="my-3">Questions</h3>
+      <Question />
+      <Question />
     </div>
   )
 }

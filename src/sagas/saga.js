@@ -3,13 +3,13 @@ import * as apiRequests from '../requests/requests';
 
 function* fetchUserHandler() {
   try {
-    const user = yield call(apiRequests.fetchUser);
-    yield put({type: 'FETCH_USER_ASYNC', user});
+    const users = yield call(apiRequests.fetchAllUsers);
+    yield put({type: 'FETCH_USERS_ASYNC', users});
   } catch(e) {
     console.log(e)
   }
 }
 
 export function* fetchUserWatcher() {
-  yield takeLatest('FETCH_USER', fetchUserHandler);
+  yield takeLatest('FETCH_USERS', fetchUserHandler);
 }
