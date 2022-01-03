@@ -4,13 +4,13 @@ import Question from './Question';
 
 const Questions = () => {
 
-  const question = useSelector(state => state.users[0].question);
+  // const question = useSelector(state => state.users[0].question);
 
   return (
     <div className="d-grid gap-3 col-5 m-3">
       <h3 className="my-3">Questions</h3>
-      <Question question={question} />
-      <Question question={question} />
+      <Question />
+      <Question />
     </div>
   )
 }
