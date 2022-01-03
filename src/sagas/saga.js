@@ -26,8 +26,8 @@ export function* registerUserHandler() {
   }
 } 
 
-export function* registerNewWatcher(action) {
-  yield takeLatest('REGISTER_USER', registerUserHandler(action.email, action.password));
+export function* registerNewWatcher() {
+  yield takeLatest('REGISTER_USER', registerUserHandler);
 }
 
 // ROOT SAGA EXPORTING MULTIPLE SAGAS
