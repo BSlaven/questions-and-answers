@@ -1,6 +1,9 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux'
 
 const UserForm = () => {
+
+  const dispatch = useDispatch()
 
   const [name, setName ] = useState();
   const [email, setEmail ] = useState();
@@ -23,9 +26,8 @@ const UserForm = () => {
 
   const formSubmitHandler = e => {
     e.preventDefault();
-    console.log('Ovo je name: ', name);
-    console.log('Ovo je email: ', email);
-    console.log('Ovo je password: ', password);
+    // const params = { email, password }
+    dispatch({ type: 'REGISTER_USER', email, password });
   }
   
   return (
