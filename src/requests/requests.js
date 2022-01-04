@@ -5,23 +5,22 @@ import { usersColRef, auth } from '../firebase/firebase-setup';
 
 // FETCH ALL USERS REQUEST
 export const fetchAllUsers = async () => {
+  console.log('I am in requests.fetchAllUsers')
   const snapshot = await getDocs(usersColRef);
   const users = snapshot.docs.map(doc => doc.data());
+  console.log('These are the users from request: ', users)
   return users;
 }
 
 // REGISTER NEW USER
-export const registerUser = (email, password) => {
-  console.log('email in request: ', email);
-  console.log('password in request: ', password);
-  const poruka = 'Slavenov flow je prošao';
-  return poruka;
-  // try {
-  //   const cred = await createUserWithEmailAndPassword(auth, email, password);
-  //   const user = cred.user;
-  //   console.log('from request', user);
-  //   return user;
-  // } catch (e) {
-  //   console.log(e);
-  // }
+export const registerUser = async (email, password) => {
+   try {
+    // const cred = await createUserWithEmailAndPassword(auth, email, password);
+    // const user = cred.user;
+    console.log('from request', email, password);
+    return { email, password }
+    // return user;
+  } catch (e) {
+    console.log(e);
+  }
 }

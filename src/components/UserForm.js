@@ -26,12 +26,8 @@ const UserForm = () => {
 
   const formSubmitHandler = e => {
     e.preventDefault();
-    console.log(email, password);
-    dispatch({
-      type: 'REGISTER_USER',
-      email,
-      password
-    });
+    // const params = { email, password }
+    dispatch({ type: 'REGISTER_USER', email, password });
   }
   
   return (
