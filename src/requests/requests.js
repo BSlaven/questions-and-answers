@@ -1,5 +1,8 @@
 import { getDocs } from 'firebase/firestore';
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { 
+  createUserWithEmailAndPassword,
+  signOut
+} from 'firebase/auth'
 
 import { usersColRef, auth } from '../firebase/firebase-setup';
 
@@ -14,12 +17,21 @@ export const fetchAllUsers = async () => {
 
 // REGISTER NEW USER
 export const registerUser = async (email, password) => {
-   try {
+  try {
     // const cred = await createUserWithEmailAndPassword(auth, email, password);
     // const user = cred.user;
     return { email, password }
     // return user;
   } catch (e) {
     console.log(e);
+  }
+}
+
+// LOGOUT USER
+export const logoutUser = async () => {
+  try {
+    await signOut(auth)
+  } catch(e) {
+    console.log(e.message)
   }
 }

@@ -7,7 +7,7 @@ const MainNav = ({ user }) => {
 
   const logoutUser = () => {
     console.log('User logged out');
-    dispatch({ type: 'LOGOUT_USER'});
+    dispatch({ type: 'LOGOUT_USER' });
   }
   
   return (
