@@ -18,7 +18,6 @@ export function* registerUserHandler({email, password}) {
     // const user = yield apiRequests.registerUser(email, password);
     const user = yield call(apiRequests.registerUser, email, password);
     yield put({ type: 'REG_USER', user })
-    console.log(user);
   } catch(e) {
     console.log(e)
   }

@@ -11,7 +11,8 @@ export const reducer = (state = initialState, action) => {
       return {...newState, users: action.users}
     
     case 'REG_USER':
-      console.log(action.user);
+      console.log('reducer: ', action.user);
+
       break;
       
     default:
