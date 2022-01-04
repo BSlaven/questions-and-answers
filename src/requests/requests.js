@@ -18,10 +18,10 @@ export const fetchAllUsers = async () => {
 // REGISTER NEW USER
 export const registerUser = async (email, password) => {
   try {
-    // const cred = await createUserWithEmailAndPassword(auth, email, password);
-    // const user = cred.user;
-    return { email, password }
-    // return user;
+    const cred = await createUserWithEmailAndPassword(auth, email, password);
+    const user = cred.user;
+    console.log('user signed up')
+    return user;
   } catch (e) {
     console.log(e);
   }

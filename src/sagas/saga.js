@@ -23,9 +23,20 @@ export function* registerUserHandler({email, password}) {
   }
 }
 
+// LOGOUT USER SAGA HANDLER
+export function* logoutUserHandler() {
+  try {
+    yield call(apiRequests.logoutUser);
+  } catch(e) {
+    console.log(e)
+  }
+}
+
+// ROOT SAGA EXPORTING ALL OTHER SAGAS
 export default function* rootSaga() {
   yield all([
     takeLatest('FETCH_USERS', fetchUserHandler),
-    takeLatest('REGISTER_USER', registerUserHandler)
+    takeLatest('REGISTER_USER', registerUserHandler),
+    takeLatest('LOGOUT_USER', logoutUserHandler)
   ])
 }
