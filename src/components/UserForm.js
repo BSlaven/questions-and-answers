@@ -26,7 +26,6 @@ const UserForm = () => {
 
   const formSubmitHandler = e => {
     e.preventDefault();
-    // const params = { email, password }
     dispatch({ type: 'REGISTER_USER', email, password });
   }
   

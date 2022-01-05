@@ -20,10 +20,12 @@ export function* registerUserHandler({email, password}) {
     const user = { 
       name: rawUser.displayName,
       id: rawUser.uid, 
-      email: rawUser.email
+      email: rawUser.email,
+      questions: [],
+      answers: []
     }
-    
-    yield put({ type: 'REG_USER', user })
+    const savedUser = yield call(apiRequests.saveUser, user)
+    yield put({ type: 'REG_USER', savedUser })
   } catch(e) {
     console.log(e)
   }
