@@ -13,19 +13,19 @@ export function* fetchUserHandler() {
 }
 
 // CREATE NEW USER SAGA HANDLER AND WATCHER
-export function* registerUserHandler({email, password}) {
+export function* registerUserHandler({email, password, name}) {
   try {
     // const user = yield apiRequests.registerUser(email, password);
     const rawUser = yield call(apiRequests.registerUser, email, password);
     const user = { 
-      name: rawUser.displayName,
+      name: name,
       id: rawUser.uid, 
       email: rawUser.email,
       questions: [],
       answers: []
     }
     const savedUser = yield call(apiRequests.saveUser, user)
-    yield put({ type: 'REG_USER', savedUser })
+    yield put({ type: 'REG_USER', user, savedUser })
   } catch(e) {
     console.log(e)
   }

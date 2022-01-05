@@ -1,5 +1,6 @@
 const initialState = {
-  users: []
+  users: [],
+  loggedIn: null
 }
 
 export const reducer = (state = initialState, action) => {
@@ -10,8 +11,11 @@ export const reducer = (state = initialState, action) => {
       console.log('action users: ', action.users)
       return {...newState, users: action.users}
     
-    case 'REG_USER':
-      break;
+    case 'REG_USER':      
+      return { 
+        loggedIn: action.user.id, 
+        users: newState.users.push(action.user)
+      }
       
     default:
       return newState
