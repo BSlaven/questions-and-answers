@@ -11,11 +11,10 @@ export const reducer = (state = initialState, action) => {
       console.log('action users: ', action.users)
       return {...newState, users: action.users}
     
-    case 'REG_USER':      
-      return { 
-        loggedIn: action.user.id, 
-        users: newState.users.push(action.user)
-      }
+    case 'REG_USER':
+      newState.users.push(action.user);
+      newState.loggedIn = action.user.id
+      return { newState }
       
     default:
       return newState
