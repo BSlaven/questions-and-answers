@@ -16,7 +16,13 @@ export function* fetchUserHandler() {
 export function* registerUserHandler({email, password}) {
   try {
     // const user = yield apiRequests.registerUser(email, password);
-    const user = yield call(apiRequests.registerUser, email, password);
+    const rawUser = yield call(apiRequests.registerUser, email, password);
+    const user = { 
+      name: rawUser.displayName,
+      id: rawUser.uid, 
+      email: rawUser.email
+    }
+    
     yield put({ type: 'REG_USER', user })
   } catch(e) {
     console.log(e)

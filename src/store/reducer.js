@@ -11,6 +11,9 @@ export const reducer = (state = initialState, action) => {
       return {...newState, users: action.users}
     
     case 'REG_USER':
+      // const user = {
+      //   ...action.users
+      // }
       console.log('user in REG_USER reducer case: ', action.user);
       break;
       
