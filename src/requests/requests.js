@@ -1,7 +1,10 @@
-import { getDocs } from 'firebase/firestore';
+import { 
+  getDocs,
+  addDoc
+} from 'firebase/firestore';
 import { 
   createUserWithEmailAndPassword,
-  signOut
+  signOut,
 } from 'firebase/auth'
 
 import { usersColRef, auth } from '../firebase/firebase-setup';
@@ -24,6 +27,17 @@ export const registerUser = async (email, password) => {
     return user;
   } catch (e) {
     console.log(e);
+  }
+}
+
+// SAVE USER TO DB
+export const saveUser = async (user) => {
+  try {
+    const savedUser = await addDoc(usersColRef, user);
+    console.log('User successfully saved: ', savedUser);
+    return savedUser
+  } catch(e) {
+    console.group(e)
   }
 }
 
