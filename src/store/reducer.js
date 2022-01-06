@@ -4,7 +4,7 @@ const initialState = {
 }
 
 export const reducer = (state = initialState, action) => {
-  const newState = state;
+  const newState = { ...state };
 
   switch (action.type) {
     case 'FETCH_USERS_ASYNC':
@@ -12,9 +12,11 @@ export const reducer = (state = initialState, action) => {
       return {...newState, users: action.users}
     
     case 'REG_USER':
-      newState.users.push(action.user);
-      newState.loggedIn = action.user.id
-      return { newState }
+      return {
+        ...state,
+        loggedIn: action.user,
+        users: [...state.users, action.user]
+      }
       
     default:
       return newState
