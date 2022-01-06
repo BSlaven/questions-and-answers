@@ -1,15 +1,16 @@
-import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 const MainNav = () => {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  
   const loggedInUser = useSelector(state => state.loggedIn)
 
   const logoutUser = () => {
-    console.log('User logged out');
     dispatch({ type: 'LOGOUT_USER' });
+    navigate('/');
   }
   
   return (
@@ -28,9 +29,9 @@ const MainNav = () => {
             <Link to="/register" className="text-light text-decoration-none">register</Link>
           </li>
         </ul> : 
-        <ul>
-          <li>
-            <Link to="/profile" className="text-light text-decoration none">
+        <ul className='navbar-nav mr-auto'>
+          <li className='mx-2 me-4 px-3 nav-item p-2 rounded'>
+            <Link to="/profile" className="text-light text-decoration-none">
               profile
             </Link>
           </li>
