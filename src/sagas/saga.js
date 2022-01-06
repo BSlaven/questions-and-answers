@@ -35,6 +35,7 @@ export function* registerUserHandler({email, password, name}) {
 export function* logoutUserHandler() {
   try {
     yield call(apiRequests.logoutUser);
+    yield put({ type: 'SIGN_OUT_USER' })
   } catch(e) {
     console.log(e)
   }

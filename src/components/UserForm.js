@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 const UserForm = () => {
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const [name, setName ] = useState();
   const [email, setEmail ] = useState();
@@ -27,6 +29,7 @@ const UserForm = () => {
   const formSubmitHandler = e => {
     e.preventDefault();
     dispatch({ type: 'REGISTER_USER', email, password, name });
+    navigate('/');
   }
   
   return (
