@@ -9,7 +9,6 @@ export function* fetchUserHandler() {
   } catch(e) {
     console.log(e)
   }
-  console.log('done with fetchUserHandler')
 }
 
 // CREATE NEW USER SAGA HANDLER AND WATCHER
@@ -51,12 +50,20 @@ export function* logoutUserHandler() {
   }
 }
 
+export function* fetchQuestionsHandler() {
+  try {
+    const questions = yield call(apiRequests.fetchAllQuestions);
+    yield put({ type: 'FETCH_QUESTIONS_ASYNC', questions });
+  } catch(e) {
+    console.log(e)
+  }
+}
+
 // ADD QUESTION HANDLER
 export function* addQuestionHandler({ payload }) {
   try {
     yield call(apiRequests.addQuestion, payload);
     yield put({ type: 'NEW_QUESTION', payload });
-    console.log('question in saga handler', payload);
   } catch(e) {
     console.log(e)
   }
@@ -69,6 +76,7 @@ export default function* rootSaga() {
     takeLatest('REGISTER_USER', registerUserHandler),
     takeLatest('LOGOUT_USER', logoutUserHandler),
     takeLatest('LOGIN_USER', loginUserHandler),
+    takeLatest('FETCH_ALL_QUESTIONS', fetchQuestionsHandler),
     takeLatest('ADD_QUESTION', addQuestionHandler)
   ])
 }

@@ -12,10 +12,8 @@ import { questionsColRef, usersColRef, auth } from '../firebase/firebase-setup';
 
 // FETCH ALL USERS REQUEST
 export const fetchAllUsers = async () => {
-  console.log('I am in requests.fetchAllUsers')
   const snapshot = await getDocs(usersColRef);
   const users = snapshot.docs.map(doc => doc.data());
-  console.log('These are the users from request: ', users)
   return users;
 }
 
@@ -24,7 +22,6 @@ export const registerUser = async (email, password) => {
   try {
     const cred = await createUserWithEmailAndPassword(auth, email, password);
     const user = cred.user;
-    console.log('user signed up')
     return user;
   } catch (e) {
     console.log(e);
@@ -46,7 +43,6 @@ export const loginUser = async (email, password) => {
 export const saveUser = async (user) => {
   try {
     const savedUser = await addDoc(usersColRef, user);
-    console.log('User successfully saved: ', savedUser);
     return savedUser
   } catch(e) {
     console.group(e)
@@ -62,8 +58,16 @@ export const logoutUser = async () => {
   }
 }
 
+// FETCH ALL QUESTIONS REQUEST
+export const fetchAllQuestions = async () => {
+  const snapshot = await getDocs(questionsColRef);
+  const questions = snapshot.docs.map(doc => doc.data());
+  return questions;
+}
+
 // ADD NEW QUESTION
 export const addQuestion = async (questionData) => {
   const savedQuestion = await addDoc(questionsColRef, questionData)
   return savedQuestion
 }
+

@@ -9,7 +9,6 @@ export const reducer = (state = initialState, action) => {
 
   switch (action.type) {
     case 'FETCH_USERS_ASYNC':
-      console.log('action users: ', action.users)
       return {...newState, users: action.users}
     
     case 'REG_USER':
@@ -20,7 +19,6 @@ export const reducer = (state = initialState, action) => {
       }
     
     case 'SIGN_IN_USER':
-      console.log('logged in user: ', action.user.uid);
       return {
         ...state,
         loggedIn: action.user.uid
@@ -30,6 +28,12 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         loggedIn: null
+      }
+
+    case 'FETCH_QUESTIONS_ASYNC':
+      return {
+        ...newState,
+        questions: action.questions
       }
 
     case 'NEW_QUESTION':
