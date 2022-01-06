@@ -15,7 +15,15 @@ const QaForm = ({ question }) => {
 
   const submitQuestionHandler = e => {
     e.preventDefault();
-    console.log(text);
+    const newQuestion = {
+      text: text,
+      answers: [],
+      likes: [],
+      dislikes: [],
+      author: 'člsddfkjačsdlkjčfalsdkj'
+    }
+    console.log(newQuestion);
+    setText('');
   }
   
   return (
@@ -28,7 +36,7 @@ const QaForm = ({ question }) => {
         value={text || ''}
         onChange={inputHandler}
         type="text" />
-      <button className="col-6 btn btn-primary">ADD QUESTION</button>
+      <button className="col-sm-12 col-lg-6 btn btn-primary">ADD QUESTION</button>
     </form>
   )
 }
