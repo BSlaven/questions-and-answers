@@ -9,7 +9,6 @@ export function* fetchUserHandler() {
   } catch(e) {
     console.log(e)
   }
-  console.log('done with fetchUserHandler')
 }
 
 // CREATE NEW USER SAGA HANDLER AND WATCHER
@@ -58,7 +57,6 @@ export function* fetchQuestionsHandler() {
   } catch(e) {
     console.log(e)
   }
-  console.log('done with fetchQuestionsHandler');
 }
 
 // ADD QUESTION HANDLER
@@ -66,7 +64,6 @@ export function* addQuestionHandler({ payload }) {
   try {
     yield call(apiRequests.addQuestion, payload);
     yield put({ type: 'NEW_QUESTION', payload });
-    console.log('question in saga handler', payload);
   } catch(e) {
     console.log(e)
   }

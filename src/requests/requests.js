@@ -22,7 +22,6 @@ export const registerUser = async (email, password) => {
   try {
     const cred = await createUserWithEmailAndPassword(auth, email, password);
     const user = cred.user;
-    console.log('user signed up')
     return user;
   } catch (e) {
     console.log(e);
@@ -44,7 +43,6 @@ export const loginUser = async (email, password) => {
 export const saveUser = async (user) => {
   try {
     const savedUser = await addDoc(usersColRef, user);
-    console.log('User successfully saved: ', savedUser);
     return savedUser
   } catch(e) {
     console.group(e)
@@ -62,10 +60,8 @@ export const logoutUser = async () => {
 
 // FETCH ALL QUESTIONS REQUEST
 export const fetchAllQuestions = async () => {
-  console.log('I am in requests.fetchAllQuestion')
   const snapshot = await getDocs(questionsColRef);
   const questions = snapshot.docs.map(doc => doc.data());
-  console.log('These are the users from request: ', questions)
   return questions;
 }
 
