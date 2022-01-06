@@ -1,6 +1,7 @@
 import { 
   getDocs,
-  addDoc
+  addDoc,
+  serverTimestamp
 } from 'firebase/firestore';
 import { 
   createUserWithEmailAndPassword,
@@ -60,4 +61,10 @@ export const logoutUser = async () => {
   } catch(e) {
     console.log(e.message)
   }
+}
+
+// ADD NEW QUESTION
+export const addQuestion = ({ userData }) => {
+  console.log(userData);
+  return userData
 }

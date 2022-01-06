@@ -23,3 +23,4 @@ export const db = getFirestore();
 export const auth = getAuth();
 
 export const usersColRef = collection(db, 'users');
+export const questionsColRef = collection(db, 'questions');

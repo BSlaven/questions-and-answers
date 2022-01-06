@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const QaForm = ({ question }) => {
+const QaForm = ({ question, user }) => {
 
   const [ text, setText ] = useState('');
   
@@ -20,9 +20,10 @@ const QaForm = ({ question }) => {
       answers: [],
       likes: [],
       dislikes: [],
-      author: 'člsddfkjačsdlkjčfalsdkj'
+      author: user,
     }
-    console.log(newQuestion);
+
+    console.log('created user in the qa form', newQuestion);
     setText('');
   }
   

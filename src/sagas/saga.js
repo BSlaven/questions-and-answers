@@ -51,12 +51,23 @@ export function* logoutUserHandler() {
   }
 }
 
+// ADD QUESTION HANDLER
+export function* addQuestionHandler({ q }) {
+  try {
+    const question = yield call(apiRequests.addQuestion, q)
+    console.log(question);
+  } catch(e) {
+    console.log(e)
+  }
+}
+
 // ROOT SAGA EXPORTING ALL OTHER SAGAS
 export default function* rootSaga() {
   yield all([
     takeLatest('FETCH_USERS', fetchUserHandler),
     takeLatest('REGISTER_USER', registerUserHandler),
     takeLatest('LOGOUT_USER', logoutUserHandler),
-    takeLatest('LOGIN_USER', loginUserHandler)
+    takeLatest('LOGIN_USER', loginUserHandler),
+    takeLatest('ADD_QUESTION', addQuestionHandler)
   ])
 }
