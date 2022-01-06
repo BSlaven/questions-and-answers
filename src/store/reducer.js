@@ -17,6 +17,12 @@ export const reducer = (state = initialState, action) => {
         loggedIn: action.user,
         users: [...state.users, action.user]
       }
+
+    case 'SIGN_OUT_USER':
+      return {
+        ...state,
+        loggedIn: null
+      }
       
     default:
       return newState
