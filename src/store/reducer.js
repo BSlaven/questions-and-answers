@@ -32,6 +32,13 @@ export const reducer = (state = initialState, action) => {
         loggedIn: null
       }
 
+    case 'FETCH_QUESTIONS_ASYNC':
+      console.log('Ovo je u questons reduceru: ', action.questions)
+      return {
+        ...newState,
+        questions: action.questions
+      }
+
     case 'NEW_QUESTION':
       return {
         ...state,

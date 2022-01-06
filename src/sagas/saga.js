@@ -51,6 +51,16 @@ export function* logoutUserHandler() {
   }
 }
 
+export function* fetchQuestionsHandler() {
+  try {
+    const questions = yield call(apiRequests.fetchAllQuestions);
+    yield put({ type: 'FETCH_QUESTIONS_ASYNC', questions });
+  } catch(e) {
+    console.log(e)
+  }
+  console.log('done with fetchQuestionsHandler');
+}
+
 // ADD QUESTION HANDLER
 export function* addQuestionHandler({ payload }) {
   try {
@@ -69,6 +79,7 @@ export default function* rootSaga() {
     takeLatest('REGISTER_USER', registerUserHandler),
     takeLatest('LOGOUT_USER', logoutUserHandler),
     takeLatest('LOGIN_USER', loginUserHandler),
+    takeLatest('FETCH_ALL_QUESTIONS', fetchQuestionsHandler),
     takeLatest('ADD_QUESTION', addQuestionHandler)
   ])
 }

@@ -1,9 +1,19 @@
-import { useSelector } from 'react-redux'
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
 
 import Question from './Question';
 import QaForm from './QaForm'
 
 const Questions = () => {
+
+  const dispatch = useDispatch();
+
+  let questions = useSelector(state => state.questions);
+  console.log('Ovo je u questions komponenti', questions);
+  
+  useEffect(() => {
+    dispatch({ type: 'FETCH_ALL_QUESTIONS' })
+  }, [dispatch]);
 
   const userLoggedIn = useSelector(state => state.loggedIn)
 
