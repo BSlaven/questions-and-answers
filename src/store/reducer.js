@@ -17,6 +17,13 @@ export const reducer = (state = initialState, action) => {
         loggedIn: action.user,
         users: [...state.users, action.user]
       }
+    
+    case 'SIGN_IN_USER':
+      console.log('logged in user: ', action.user.uid);
+      return {
+        ...state,
+        loggedIn: action.user.uid
+      }
 
     case 'SIGN_OUT_USER':
       return {

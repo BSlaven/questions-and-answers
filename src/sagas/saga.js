@@ -31,6 +31,16 @@ export function* registerUserHandler({email, password, name}) {
   }
 }
 
+// LOGIN USER HANDLER
+export function* loginUserHandler({ email, password }) {
+  try {
+    const user = yield call(apiRequests.loginUser, email, password);
+    yield put({ type: 'SIGN_IN_USER', user });
+  } catch(e) {
+    console.log(e)
+  }
+}
+
 // LOGOUT USER SAGA HANDLER
 export function* logoutUserHandler() {
   try {
@@ -46,6 +56,7 @@ export default function* rootSaga() {
   yield all([
     takeLatest('FETCH_USERS', fetchUserHandler),
     takeLatest('REGISTER_USER', registerUserHandler),
-    takeLatest('LOGOUT_USER', logoutUserHandler)
+    takeLatest('LOGOUT_USER', logoutUserHandler),
+    takeLatest('LOGIN_USER', loginUserHandler)
   ])
 }
