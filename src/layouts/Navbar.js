@@ -27,10 +27,18 @@ const MainNav = () => {
           <li className='mx-2 nav-item p-2 border border-success rounded'>
             <Link to="/register" className="text-light text-decoration-none">register</Link>
           </li>
-        </ul> : <button 
-          type='button'
-          className="btn btn-outline-danger"
-          onClick={logoutUser}>logout</button> }
+        </ul> : 
+        <ul>
+          <li>
+            <Link to="/profile" className="text-light text-decoration none">
+              profile
+            </Link>
+          </li>
+          <button 
+            type='button'
+            className="btn btn-outline-danger"
+            onClick={logoutUser}>logout</button>
+        </ul> }
       </div>
     </nav>
   )
