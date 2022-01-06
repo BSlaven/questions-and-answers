@@ -9,7 +9,6 @@ const Questions = () => {
   const dispatch = useDispatch();
 
   let questions = useSelector(state => state.questions);
-  console.log('Ovo je u questions komponenti', questions);
   
   useEffect(() => {
     dispatch({ type: 'FETCH_ALL_QUESTIONS' })
@@ -20,11 +19,10 @@ const Questions = () => {
   return (
     <div className="col-5 m-3">
       <h3 className="my-4">Questions</h3>
-      <QaForm question='slaven' user={userLoggedIn} />
-      <Question />
-      <Question />
+      {userLoggedIn && <QaForm question='slaven' user={userLoggedIn} />}
+      {questions && questions.map(question => <Question key={question.id} question={question} />)}
     </div>
   )
 }
 
-export default Questions
+export default Questions;

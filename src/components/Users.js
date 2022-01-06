@@ -8,8 +8,6 @@ const Users = () => {
   const dispatch = useDispatch();
 
   let users = useSelector(state => state.users);
-  console.log('Ovo je user componente', users);
-  
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USERS'})
