@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 const QaForm = ({ question, user }) => {
 
   const [ text, setText ] = useState('');
+
+  const dispatch = useDispatch();
   
   useEffect(() => {
     setText(question);
@@ -21,9 +24,10 @@ const QaForm = ({ question, user }) => {
       likes: [],
       dislikes: [],
       author: user,
+      createdAt: new Date()
     }
-
     console.log('created user in the qa form', newQuestion);
+    dispatch({ type: 'ADD_QUESTION', payload: newQuestion })
     setText('');
   }
   

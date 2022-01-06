@@ -52,10 +52,11 @@ export function* logoutUserHandler() {
 }
 
 // ADD QUESTION HANDLER
-export function* addQuestionHandler({ q }) {
+export function* addQuestionHandler({ payload }) {
   try {
-    const question = yield call(apiRequests.addQuestion, q)
-    console.log('question in saga handler', question);
+    yield call(apiRequests.addQuestion, payload);
+    yield put({ type: 'NEW_QUESTION', payload });
+    console.log('question in saga handler', payload);
   } catch(e) {
     console.log(e)
   }

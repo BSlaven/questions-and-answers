@@ -31,6 +31,12 @@ export const reducer = (state = initialState, action) => {
         ...state,
         loggedIn: null
       }
+
+    case 'NEW_QUESTION':
+      return {
+        ...state,
+        question: [...state.questions, action.payload]
+      }
       
     default:
       return newState

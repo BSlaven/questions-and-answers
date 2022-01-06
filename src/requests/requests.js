@@ -1,7 +1,6 @@
 import { 
   getDocs,
-  addDoc,
-  serverTimestamp
+  addDoc
 } from 'firebase/firestore';
 import { 
   createUserWithEmailAndPassword,
@@ -9,7 +8,7 @@ import {
   signOut,
 } from 'firebase/auth'
 
-import { usersColRef, auth } from '../firebase/firebase-setup';
+import { questionsColRef, usersColRef, auth } from '../firebase/firebase-setup';
 
 // FETCH ALL USERS REQUEST
 export const fetchAllUsers = async () => {
@@ -64,7 +63,7 @@ export const logoutUser = async () => {
 }
 
 // ADD NEW QUESTION
-export const addQuestion = ({ questionData }) => {
-  console.log('question in request', questionData);
-  return questionData
+export const addQuestion = async (questionData) => {
+  const savedQuestion = await addDoc(questionsColRef, questionData)
+  return savedQuestion
 }
