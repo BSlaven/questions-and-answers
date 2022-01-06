@@ -55,7 +55,7 @@ export function* logoutUserHandler() {
 export function* addQuestionHandler({ q }) {
   try {
     const question = yield call(apiRequests.addQuestion, q)
-    console.log(question);
+    console.log('question in saga handler', question);
   } catch(e) {
     console.log(e)
   }

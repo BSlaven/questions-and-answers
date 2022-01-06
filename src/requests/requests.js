@@ -64,7 +64,7 @@ export const logoutUser = async () => {
 }
 
 // ADD NEW QUESTION
-export const addQuestion = ({ userData }) => {
-  console.log(userData);
-  return userData
+export const addQuestion = ({ questionData }) => {
+  console.log('question in request', questionData);
+  return questionData
 }
