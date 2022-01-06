@@ -8,7 +8,7 @@ import {
   signOut,
 } from 'firebase/auth'
 
-import { usersColRef, auth } from '../firebase/firebase-setup';
+import { questionsColRef, usersColRef, auth } from '../firebase/firebase-setup';
 
 // FETCH ALL USERS REQUEST
 export const fetchAllUsers = async () => {
@@ -60,4 +60,10 @@ export const logoutUser = async () => {
   } catch(e) {
     console.log(e.message)
   }
+}
+
+// ADD NEW QUESTION
+export const addQuestion = async (questionData) => {
+  const savedQuestion = await addDoc(questionsColRef, questionData)
+  return savedQuestion
 }

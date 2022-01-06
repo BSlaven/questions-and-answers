@@ -4,7 +4,7 @@ import Users from '../components/Users';
 const Homepage = () => {
   
   return (
-    <div className="d-flex justify-content-around">
+    <div className="d-flex container justify-content-around">
       <Questions />
       <Users />
     </div>

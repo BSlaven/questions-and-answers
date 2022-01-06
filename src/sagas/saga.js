@@ -51,12 +51,24 @@ export function* logoutUserHandler() {
   }
 }
 
+// ADD QUESTION HANDLER
+export function* addQuestionHandler({ payload }) {
+  try {
+    yield call(apiRequests.addQuestion, payload);
+    yield put({ type: 'NEW_QUESTION', payload });
+    console.log('question in saga handler', payload);
+  } catch(e) {
+    console.log(e)
+  }
+}
+
 // ROOT SAGA EXPORTING ALL OTHER SAGAS
 export default function* rootSaga() {
   yield all([
     takeLatest('FETCH_USERS', fetchUserHandler),
     takeLatest('REGISTER_USER', registerUserHandler),
     takeLatest('LOGOUT_USER', logoutUserHandler),
-    takeLatest('LOGIN_USER', loginUserHandler)
+    takeLatest('LOGIN_USER', loginUserHandler),
+    takeLatest('ADD_QUESTION', addQuestionHandler)
   ])
 }

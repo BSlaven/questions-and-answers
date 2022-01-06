@@ -1,5 +1,6 @@
 const initialState = {
   users: [],
+  questions: [],
   loggedIn: null
 }
 
@@ -29,6 +30,12 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         loggedIn: null
+      }
+
+    case 'NEW_QUESTION':
+      return {
+        ...state,
+        question: [...state.questions, action.payload]
       }
       
     default:
