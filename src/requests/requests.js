@@ -4,6 +4,7 @@ import {
 } from 'firebase/firestore';
 import { 
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
   signOut,
 } from 'firebase/auth'
 
@@ -27,6 +28,17 @@ export const registerUser = async (email, password) => {
     return user;
   } catch (e) {
     console.log(e);
+  }
+}
+
+// LOGIN USER
+export const loginUser = async (email, password) => {
+  try {
+    const cred = await signInWithEmailAndPassword(auth, email, password);
+    const user = cred.user;
+    return user;
+  } catch(e) {
+    console.log(e)
   }
 }
 
