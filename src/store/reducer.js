@@ -18,17 +18,17 @@ export const reducer = (state = initialState, action) => {
         users: [...state.users, action.user]
       }
     
-    case 'SIGN_IN_USER':
-      return {
-        ...state,
-        loggedIn: action.user.uid
-      }
+    // case 'SIGN_IN_USER':
+    //   return {
+    //     ...state,
+    //     loggedIn: action.user.uid
+    //   }
 
-    case 'SIGN_OUT_USER':
-      return {
-        ...state,
-        loggedIn: null
-      }
+    // case 'SIGN_OUT_USER':
+    //   return {
+    //     ...state,
+    //     loggedIn: null
+    //   }
 
     case 'FETCH_QUESTIONS_ASYNC':
       return {
@@ -40,6 +40,18 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         question: [...state.questions, action.payload]
+      }
+
+    case 'USER_IN_ASYNC':
+      return {
+        ...newState,
+        loggedIn: action.id
+      }
+
+      case 'USER_OUT_ASYNC':
+      return {
+        ...newState,
+        loggedIn: null
       }
       
     default:

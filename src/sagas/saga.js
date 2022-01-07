@@ -33,8 +33,8 @@ export function* registerUserHandler({email, password, name}) {
 // LOGIN USER HANDLER
 export function* loginUserHandler({ email, password }) {
   try {
-    const user = yield call(apiRequests.loginUser, email, password);
-    yield put({ type: 'SIGN_IN_USER', user });
+    yield call(apiRequests.loginUser, email, password);
+    // yield put({ type: 'SIGN_IN_USER', user });
   } catch(e) {
     console.log(e)
   }
@@ -44,7 +44,7 @@ export function* loginUserHandler({ email, password }) {
 export function* logoutUserHandler() {
   try {
     yield call(apiRequests.logoutUser);
-    yield put({ type: 'SIGN_OUT_USER' })
+    // yield put({ type: 'SIGN_OUT_USER' })
   } catch(e) {
     console.log(e)
   }
@@ -69,6 +69,22 @@ export function* addQuestionHandler({ payload }) {
   }
 }
 
+export function* userInHandler ({ id }) {
+  try {
+    yield put({ type: 'USER_IN_ASYNC', id })
+  } catch(e) {
+    console.log(e);
+  }
+}
+
+export function* userOutHandler () {
+  try {
+    yield put({ type: 'USER_OUT_ASYNC' })
+  } catch(e) {
+    console.log(e);
+  }
+}
+
 // ROOT SAGA EXPORTING ALL OTHER SAGAS
 export default function* rootSaga() {
   yield all([
@@ -77,6 +93,8 @@ export default function* rootSaga() {
     takeLatest('LOGOUT_USER', logoutUserHandler),
     takeLatest('LOGIN_USER', loginUserHandler),
     takeLatest('FETCH_ALL_QUESTIONS', fetchQuestionsHandler),
-    takeLatest('ADD_QUESTION', addQuestionHandler)
+    takeLatest('ADD_QUESTION', addQuestionHandler),
+    takeLatest('USER_IN', userInHandler),
+    takeLatest('USER_OUT', userOutHandler)
   ])
 }
