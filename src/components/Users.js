@@ -17,7 +17,7 @@ const Users = () => {
   return (
     <div className="col-5 m-3">
       <h3 className="my-4">Users (questions)</h3>
-      {users && users.map(user => <User key={user.id} user={user} />)}
+      {users && users.map(user => <User key={user.userId} user={user} />)}
     </div>
   )
 }

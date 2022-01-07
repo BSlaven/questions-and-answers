@@ -27,6 +27,7 @@ export const registerUser = async (email, password) => {
   try {
     const cred = await createUserWithEmailAndPassword(auth, email, password);
     const user = cred.user;
+    console.log('kreirani korisnik: ', user);
     return user;
   } catch (e) {
     console.log(e);
@@ -38,6 +39,7 @@ export const loginUser = async (email, password) => {
   try {
     const cred = await signInWithEmailAndPassword(auth, email, password);
     const user = cred.user;
+    console.log(user);
     return user;
   } catch(e) {
     console.log(e)
