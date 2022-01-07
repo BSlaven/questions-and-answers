@@ -8,8 +8,6 @@ const Profile = () => {
   const loggedUser = useSelector(state => state.loggedIn);
   const users = useSelector(state => state.users);
   const selectedUser = users.find(user => user.userId === loggedUser);
-  console.log('Ulogovani user: ', loggedUser);
-  console.log('Izabrnani user: ', selectedUser);
   
   return (
     <div className="rounded m-3 mt-5 mx-auto col-md-12">
