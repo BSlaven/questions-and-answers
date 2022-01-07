@@ -18,12 +18,17 @@ export function* registerUserHandler({email, password, name}) {
     const rawUser = yield call(apiRequests.registerUser, email, password);
     const user = { 
       name: name,
+      userId: rawUser.uid,
       email: rawUser.email,
       questions: [],
       answers: []
     }
-    const savedUser = yield call(apiRequests.saveUser, user)
-    yield put({ type: 'REG_USER', newUser: { ...user, id: savedUser.id, }})
+    console.log(user);
+    // const savedUser = yield call(apiRequests.saveUser, user)
+    yield call(apiRequests.saveUser, user)
+    yield put({ type: 'REG_USER', user })
+    // yield put({ type: 'REG_USER', newUser: {...user, id: rawUser.uid } })
+    console.log('završio registraciju')
   } catch(e) {
     console.log(e)
   }

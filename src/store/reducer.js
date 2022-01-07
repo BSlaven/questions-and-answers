@@ -14,8 +14,8 @@ export const reducer = (state = initialState, action) => {
     case 'REG_USER':
       return {
         ...newState,
-        loggedIn: action.newUser.id,
-        users: [...state.users, action.newUser]
+        loggedIn: action.user.userId,
+        users: [...state.users, action.user]
       }
 
     case 'FETCH_QUESTIONS_ASYNC':
