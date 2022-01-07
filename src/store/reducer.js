@@ -27,7 +27,7 @@ export const reducer = (state = initialState, action) => {
     case 'NEW_QUESTION':
       return {
         ...state,
-        question: [...state.questions, action.payload]
+        questions: [ ...state.questions, action.newQuestion ]
       }
 
     case 'USER_IN_ASYNC':

@@ -8,6 +8,7 @@ const Users = () => {
   const dispatch = useDispatch();
 
   let users = useSelector(state => state.users);
+  console.log('My users: ', users)
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USERS'})

@@ -9,6 +9,7 @@ const Questions = () => {
   const dispatch = useDispatch();
 
   let questions = useSelector(state => state.questions);
+  console.log(questions);
   
   useEffect(() => {
     dispatch({ type: 'FETCH_ALL_QUESTIONS' })
