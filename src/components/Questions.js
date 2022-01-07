@@ -17,7 +17,7 @@ const Questions = () => {
   const userLoggedIn = useSelector(state => state.loggedIn)
 
   return (
-    <div className="col-5 m-3">
+    <div className="col-sm-12 col-md-5 m-3">
       <h3 className="my-4">Questions</h3>
       {userLoggedIn && <QaForm question='slaven' user={userLoggedIn} />}
       {questions && questions.map(question => <Question key={question.id} question={question} />)}
