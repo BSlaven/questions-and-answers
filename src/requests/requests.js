@@ -13,7 +13,12 @@ import { questionsColRef, usersColRef, auth } from '../firebase/firebase-setup';
 // FETCH ALL USERS REQUEST
 export const fetchAllUsers = async () => {
   const snapshot = await getDocs(usersColRef);
-  const users = snapshot.docs.map(doc => doc.data());
+  const users = snapshot.docs.map(doc => {
+    return {
+      ...doc.data(),
+      id: doc.id
+    }
+  });
   return users;
 }
 
@@ -61,7 +66,12 @@ export const logoutUser = async () => {
 // FETCH ALL QUESTIONS REQUEST
 export const fetchAllQuestions = async () => {
   const snapshot = await getDocs(questionsColRef);
-  const questions = snapshot.docs.map(doc => doc.data());
+  const questions = snapshot.docs.map(doc => {
+    return {
+      ...doc.data(),
+      id: doc.id
+    }
+  });
   return questions;
 }
 

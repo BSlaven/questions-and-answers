@@ -18,7 +18,7 @@ export function* registerUserHandler({email, password, name}) {
     const rawUser = yield call(apiRequests.registerUser, email, password);
     const user = { 
       name: name,
-      id: rawUser.uid, 
+      id: rawUser.id, 
       email: rawUser.email,
       questions: [],
       answers: []
@@ -34,7 +34,6 @@ export function* registerUserHandler({email, password, name}) {
 export function* loginUserHandler({ email, password }) {
   try {
     yield call(apiRequests.loginUser, email, password);
-    // yield put({ type: 'SIGN_IN_USER', user });
   } catch(e) {
     console.log(e)
   }
@@ -44,7 +43,6 @@ export function* loginUserHandler({ email, password }) {
 export function* logoutUserHandler() {
   try {
     yield call(apiRequests.logoutUser);
-    // yield put({ type: 'SIGN_OUT_USER' })
   } catch(e) {
     console.log(e)
   }
@@ -62,8 +60,10 @@ export function* fetchQuestionsHandler() {
 // ADD QUESTION HANDLER
 export function* addQuestionHandler({ payload }) {
   try {
-    yield call(apiRequests.addQuestion, payload);
-    yield put({ type: 'NEW_QUESTION', payload });
+    const savedQuestion = yield call(apiRequests.addQuestion, payload);
+    const newQuestion = { ...payload, id: savedQuestion.id}
+    console.log('pitanje u sagi: ', newQuestion);
+    yield put({ type: 'NEW_QUESTION', newQuestion });
   } catch(e) {
     console.log(e)
   }
