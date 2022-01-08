@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-const UserForm = () => {
+const UserForm = ({ user }) => {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const [name, setName ] = useState();
-  const [email, setEmail ] = useState();
+  const [name, setName ] = useState(user.name || '');
+  const [email, setEmail ] = useState(user.email || '');
   const [password, setPassword ] = useState();
 
   const inputHandler = e => {

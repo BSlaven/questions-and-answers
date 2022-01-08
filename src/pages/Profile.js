@@ -1,13 +1,26 @@
-// import { useEffect } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import Questions from '../components/Questions';
+// import UserForm from '../components/UserForm';
+import EditElement from '../components/EditElement'
 
 const Profile = () => {
+
+  const [ editableElement, setEditableElement ] = useState(null);
+  const [ showEditForm, setShowEditForm ] = useState(false)
+
+  const onClickForChange = e => {
+    const target = e.target.id;
+    setEditableElement(target);
+    setShowEditForm(true)
+    console.log('Ovo je kliknuti element', e.target.id);
+  }
 
   const loggedUser = useSelector(state => state.loggedIn);
   const users = useSelector(state => state.users);
   const selectedUser = users.find(user => user.userId === loggedUser);
+  console.log(selectedUser)
   const questions = useSelector(state => state.questions)
     .filter(questions => questions.author === loggedUser)
 
@@ -18,7 +31,7 @@ const Profile = () => {
     .reduce((acc, curr) => acc.concat(curr), []);
   
   return (
-    <div className="rounded m-3 mt-5 mx-auto col-md-12">
+    <div className="rounded m-3 mt-5 mx-auto col-md-12 position-relative">
       <div className="row m-4 mt-5 d-flex justify-content-center">
       <div className="col-sm-12 col-md-5 m-3" style={{color: "#2C3E50"}}>
         <h3 style={{color: "#1C2833"}} className="my-4">User info</h3>
@@ -38,8 +51,21 @@ const Profile = () => {
           <p className="fs-4 m-0 col-5">Answers:</p>
           <p className="fs-4 m-0 col-5">{userQuestions.length}</p>
         </div>
-        <button style={{backgroundColor: "#D2E7FC"}} className="my-3 btn btn-light text-dark">Change info</button>
+        <button 
+          onClick={onClickForChange}
+          style={{backgroundColor: "#D2E7FC"}}
+          className="my-3 btn btn-light text-dark"
+          id="name">
+          Change Name
+        </button>
+        <button 
+          onClick={onClickForChange}
+          style={{backgroundColor: "#D2E7FC"}}
+          className="my-3 btn btn-light text-dark ms-2"
+          id="password">Change Password
+        </button>
       </div>
+      {showEditForm && <EditElement element={editableElement} />}
       <Questions displayQuestions={userQuestions} />
       </div>
     </div>

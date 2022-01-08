@@ -1,4 +1,5 @@
-import UserForm from './UserForm';
+import EditElement from './EditElement';
+
 
 const ProfileModal = () => {
   return (
@@ -12,7 +13,7 @@ const ProfileModal = () => {
             </button>
           </div>
           <div class="modal-body">
-            <UserForm />
+            <EditElement />
           </div>
         </div>
       </div>
