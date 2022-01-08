@@ -13,5 +13,5 @@
 - Firebase also provided me with a way to have live real authentication for users.
   
 ## Some key points
-- One thing that can be noted is that I could have set questions as a separate collection. By going with the single collection approach I had to extract questions from all users in places where I had to access the questions.
 - For the number of likes and dislikes I decided instead of simply counting them to actually add ids of user who liked or disliked a question. This allowed me to prevent a user from liking/disliking a question if they already did that.
+- Reducer and saga functions could definitely be separated into files for better folder structure.
