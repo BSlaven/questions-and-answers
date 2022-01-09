@@ -62,6 +62,16 @@ export function* changeUserNameHanlder({ name, id }) {
   }
 }
 
+// CHANGE USER PASSWORD HANDLER
+export function* changeUserPasswordHandler({ password }) {
+  try {
+    yield call(apiRequests.changePassword, password)
+    console.log('password change done');
+  } catch(e) {
+    console.log(e)
+  }
+}
+
 // FETCH QUESTION HANDLER
 export function* fetchQuestionsHandler() {
   try {
@@ -111,6 +121,7 @@ export default function* rootSaga() {
     takeLatest('ADD_QUESTION', addQuestionHandler),
     takeLatest('USER_IN', userInHandler),
     takeLatest('USER_OUT', userOutHandler),
-    takeLatest('CHANGE_USER_NAME', changeUserNameHanlder)
+    takeLatest('CHANGE_USER_NAME', changeUserNameHanlder),
+    takeLatest('CHANGE_USER_PASSWORD', changeUserPasswordHandler)
   ])
 }

@@ -17,6 +17,9 @@ const EditElement = ({ element, user, close }) => {
     if(element === 'name') {
       const name = elementText;
       dispatch({ type: 'CHANGE_USER_NAME', name, id: user.id })
+    } else {
+      const password = elementText;
+      dispatch({ type: 'CHANGE_USER_PASSWORD', password })
     }
   }
   

@@ -8,6 +8,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  updatePassword
 } from 'firebase/auth'
 
 import { questionsColRef, usersColRef, auth } from '../firebase/firebase-setup';
@@ -81,6 +82,17 @@ export const changeName = async (name, id) => {
     console.log(e)
   }
 }
+
+// CHANGE USER PASSWORD
+export const changePassword = async (password) => {
+  try {
+    const user = await auth.currentUser;
+    const newUserPass = await updatePassword(user, password);
+    return newUserPass;
+  } catch(e) {
+    console.log(e)
+  }
+} 
 
 // FETCH ALL QUESTIONS REQUEST
 export const fetchAllQuestions = async () => {
