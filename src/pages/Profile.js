@@ -17,6 +17,10 @@ const Profile = () => {
     console.log('Ovo je kliknuti element', e.target.id);
   }
 
+  const closeEditForm = () => {
+    setShowEditForm(false);
+  }
+
   const loggedUser = useSelector(state => state.loggedIn);
   const users = useSelector(state => state.users);
   const selectedUser = users.find(user => user.userId === loggedUser);
@@ -65,7 +69,7 @@ const Profile = () => {
           id="password">Change Password
         </button>
       </div>
-      {showEditForm && <EditElement element={editableElement} />}
+      {showEditForm && <EditElement close={closeEditForm} element={editableElement} user={selectedUser} />}
       <Questions displayQuestions={userQuestions} />
       </div>
     </div>
