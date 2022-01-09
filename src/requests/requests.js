@@ -1,6 +1,8 @@
 import { 
   getDocs,
-  addDoc
+  addDoc,
+  updateDoc,
+  doc
 } from 'firebase/firestore';
 import { 
   createUserWithEmailAndPassword,
@@ -62,6 +64,21 @@ export const logoutUser = async () => {
     await signOut(auth)
   } catch(e) {
     console.log(e.message)
+  }
+}
+
+// CHANGE USER NAME REQUEST
+export const changeName = async (name, id) => {
+  console.log('name: ', name);
+  console.log('id: ', id);
+  try {
+    const userRef = doc(usersColRef, id);
+    const updated = await updateDoc(userRef, {
+      name: name
+    })
+    return updated
+  } catch(e) {
+    console.log(e)
   }
 }
 

@@ -52,6 +52,17 @@ export function* logoutUserHandler() {
   }
 }
 
+// CHANGE USER NAME HANDLER
+export function* changeUserNameHanlder({ name, id }) {
+  try {
+    yield call(apiRequests.changeName, name, id);
+    yield put({ type: 'CHANGE_NAME', name, id });
+  } catch(e) {
+    console.log(e)
+  }
+}
+
+// FETCH QUESTION HANDLER
 export function* fetchQuestionsHandler() {
   try {
     const questions = yield call(apiRequests.fetchAllQuestions);
@@ -99,6 +110,7 @@ export default function* rootSaga() {
     takeLatest('FETCH_ALL_QUESTIONS', fetchQuestionsHandler),
     takeLatest('ADD_QUESTION', addQuestionHandler),
     takeLatest('USER_IN', userInHandler),
-    takeLatest('USER_OUT', userOutHandler)
+    takeLatest('USER_OUT', userOutHandler),
+    takeLatest('CHANGE_USER_NAME', changeUserNameHanlder)
   ])
 }

@@ -41,6 +41,14 @@ export const reducer = (state = initialState, action) => {
         ...newState,
         loggedIn: null
       }
+
+      case 'CHANGE_NAME':
+        const selectedUser = newState.users.find(user => user.id === action.id);
+        const changedUser = {...selectedUser};
+        const index = newState.users.findIndex(user => user.id === action.id);
+        selectedUser.name = action.name;
+        const newArray = newState.users.splice(index, 1, changedUser);
+        return { ...newState, users: [ ...newArray ]}  
       
     default:
       return newState
