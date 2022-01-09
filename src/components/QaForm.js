@@ -33,7 +33,7 @@ const QaForm = ({ question, user }) => {
   
   return (
     <form
-      style={{backgroundColor: '#D5F5E3'}}
+      style={{backgroundColor: '#D5F5E3', maxWidth: '600px'}}
       onSubmit={submitQuestionHandler}
       className="col-12 d-flex rounded flex-column p-2 mb-4">
       <textarea
@@ -41,7 +41,7 @@ const QaForm = ({ question, user }) => {
         value={text || ''}
         onChange={inputHandler}
         type="text" />
-      <button className="col-sm-12 col-lg-6 btn btn-primary">ADD QUESTION</button>
+      <button style={{maxWidth: '200px'}} className="ms-auto col-sm-12 col-lg-6 btn btn-primary">ADD</button>
     </form>
   )
 }

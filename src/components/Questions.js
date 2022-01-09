@@ -15,7 +15,7 @@ const Questions = ({ displayQuestions }) => {
   useEffect(() => {
     dispatch({ type: 'FETCH_ALL_QUESTIONS' })
   }, [dispatch]);
-
+ 
   const userLoggedIn = useSelector(state => state.loggedIn)
 
   return (
