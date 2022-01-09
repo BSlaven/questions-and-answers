@@ -8,7 +8,7 @@ import Homepage from './pages/Homepage';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
-import Question from './pages/Question';
+import QuestionPage from './pages/QuestionPage';
 
 function App() {
 
@@ -31,7 +31,7 @@ function App() {
         <MainNav />
         <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="/questions/:id" element={<Question />} />
+          <Route path="/question" element={<QuestionPage />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

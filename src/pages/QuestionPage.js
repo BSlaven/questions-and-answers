@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Question = () => {
+const QuestionPage = () => {
   return (
     <div>
       <h4>Ovo je question stranica</h4>
@@ -8,4 +8,4 @@ const Question = () => {
   )
 }
 
-export default Question
+export default QuestionPage
