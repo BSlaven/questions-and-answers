@@ -1,11 +1,16 @@
 import { 
   getDocs,
-  addDoc
+  addDoc,
+  updateDoc,
+  doc,
+  deleteDoc
 } from 'firebase/firestore';
 import { 
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  updatePassword,
+  deleteUser
 } from 'firebase/auth'
 
 import { questionsColRef, usersColRef, auth } from '../firebase/firebase-setup';
@@ -62,6 +67,53 @@ export const logoutUser = async () => {
     await signOut(auth)
   } catch(e) {
     console.log(e.message)
+  }
+}
+
+// CHANGE USER NAME REQUEST
+export const changeName = async (name, id) => {
+  console.log('name: ', name);
+  console.log('id: ', id);
+  try {
+    const userRef = doc(usersColRef, id);
+    const updated = await updateDoc(userRef, {
+      name: name
+    })
+    return updated
+  } catch(e) {
+    console.log(e)
+  }
+}
+
+// CHANGE USER PASSWORD
+export const changePassword = async (password) => {
+  try {
+    const user = await auth.currentUser;
+    const newUserPass = await updatePassword(user, password);
+    return newUserPass;
+  } catch(e) {
+    console.log(e)
+  }
+}
+
+// DELETE PROFILE
+export const deleteProfile = async () => {
+  try {
+    const user = await auth.currentUser;
+    await deleteUser(user)
+    console.log('završio sam brisanje: ', user);
+  } catch(e) {
+    console.log(e)
+  }
+}
+
+// DELETE USER DOCUMENT
+export const deleteUserDoc = async (id) => {
+  try {
+    const userDoc = await doc(usersColRef, id);
+    await deleteDoc(userDoc);
+  } catch(e) {
+    console.log(e)
   }
 }
 

@@ -52,6 +52,38 @@ export function* logoutUserHandler() {
   }
 }
 
+// CHANGE USER NAME HANDLER
+export function* changeUserNameHanlder({ name, id }) {
+  try {
+    yield call(apiRequests.changeName, name, id);
+    yield put({ type: 'CHANGE_NAME', name, id });
+  } catch(e) {
+    console.log(e)
+  }
+}
+
+// CHANGE USER PASSWORD HANDLER
+export function* changeUserPasswordHandler({ password }) {
+  try {
+    yield call(apiRequests.changePassword, password)
+    console.log('password change done');
+  } catch(e) {
+    console.log(e)
+  }
+}
+
+// DELETE PROFILE HANDLER
+export function* deleteProfileHandler({ id }) {
+  try {
+    yield call(apiRequests.deleteProfile);
+    yield call(apiRequests.deleteUserDoc, id)
+    yield put({ type: 'REMOVE_USER', id })
+  } catch(e) {
+    console.log(e)
+  }
+}
+
+// FETCH QUESTION HANDLER
 export function* fetchQuestionsHandler() {
   try {
     const questions = yield call(apiRequests.fetchAllQuestions);
@@ -99,6 +131,9 @@ export default function* rootSaga() {
     takeLatest('FETCH_ALL_QUESTIONS', fetchQuestionsHandler),
     takeLatest('ADD_QUESTION', addQuestionHandler),
     takeLatest('USER_IN', userInHandler),
-    takeLatest('USER_OUT', userOutHandler)
+    takeLatest('USER_OUT', userOutHandler),
+    takeLatest('CHANGE_USER_NAME', changeUserNameHanlder),
+    takeLatest('CHANGE_USER_PASSWORD', changeUserPasswordHandler),
+    takeLatest('DELETE_PROFILE', deleteProfileHandler)
   ])
 }

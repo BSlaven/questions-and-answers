@@ -7,9 +7,9 @@ const UserForm = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const [name, setName ] = useState();
-  const [email, setEmail ] = useState();
-  const [password, setPassword ] = useState();
+  const [name, setName ] = useState('');
+  const [email, setEmail ] = useState('');
+  const [password, setPassword ] = useState('');
 
   const inputHandler = e => {
     const value = e.target.value;
