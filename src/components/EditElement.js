@@ -6,21 +6,11 @@ const EditElement = ({ element, user, close }) => {
   const dispatch = useDispatch();
 
   const [ elementText, setElementText ] = useState('');
-
-  console.log('ID koji je došao u formular', user.id)
-  console.log('This is the EditElement component: ', element)
-
+  
   const inputChangeHandler = e => {
     const value = e.target.value;
     setElementText(value);
   }
-
-  // === SAGA TO CHANGE THE USERS NAME ===
-// const changeNameSubmit = e => {
-//   const name = user.name;
-//   dispatch({ type: 'CHANGE_USER_NAME', name })
-// }
-
 
   const submitChanges = e => {
     e.preventDefault();
@@ -28,7 +18,6 @@ const EditElement = ({ element, user, close }) => {
       const name = elementText;
       dispatch({ type: 'CHANGE_USER_NAME', name, id: user.id })
     }
-
   }
   
   return (
