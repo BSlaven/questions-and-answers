@@ -8,7 +8,8 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  updatePassword
+  updatePassword,
+  deleteUser
 } from 'firebase/auth'
 
 import { questionsColRef, usersColRef, auth } from '../firebase/firebase-setup';
@@ -92,7 +93,18 @@ export const changePassword = async (password) => {
   } catch(e) {
     console.log(e)
   }
-} 
+}
+
+// DELETE PROFILE
+export const deleteProfile = async () => {
+  try {
+    const user = await auth.currentUser;
+    await deleteUser(user)
+    console.log('završio sam brisanje');
+  } catch(e) {
+    console.log(e)
+  }
+}
 
 // FETCH ALL QUESTIONS REQUEST
 export const fetchAllQuestions = async () => {

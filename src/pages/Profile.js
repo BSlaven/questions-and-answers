@@ -1,11 +1,14 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom'
 
 import Questions from '../components/Questions';
-// import UserForm from '../components/UserForm';
 import EditElement from '../components/EditElement'
 
 const Profile = () => {
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [ editableElement, setEditableElement ] = useState(null);
   const [ showEditForm, setShowEditForm ] = useState(false)
@@ -14,11 +17,16 @@ const Profile = () => {
     const target = e.target.id;
     setEditableElement(target);
     setShowEditForm(true)
-    console.log('Ovo je kliknuti element', e.target.id);
   }
 
   const closeEditForm = () => {
     setShowEditForm(false);
+  }
+
+  const deleteProfile = () => {
+    console.log('kliknuo sam da obrišem profil');
+    // dispatch({ type: 'DELETE_PROFILE' })
+    // navigate('/');
   }
 
   const loggedUser = useSelector(state => state.loggedIn);
@@ -36,6 +44,10 @@ const Profile = () => {
   
   return (
     <div className="rounded m-3 mt-5 mx-auto col-md-12 position-relative">
+      <button 
+        style={{top: '-1rem', right: '1rem'}} 
+        className="btn btn-outline-warning position-absolute"
+        onClick={deleteProfile}>Delete Profile</button>
       <div className="row m-4 mt-5 d-flex justify-content-center">
       <div className="col-sm-12 col-md-5 m-3" style={{color: "#2C3E50"}}>
         <h3 style={{color: "#1C2833"}} className="my-4">User info</h3>
