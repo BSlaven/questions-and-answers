@@ -37,7 +37,7 @@ const Profile = () => {
   
     const deleteProfile = () => {
       dispatch({ type: 'DELETE_PROFILE', id: selectedUser.id })
-      // navigate('/');
+      navigate('/');
     }
   
   return (

@@ -48,7 +48,11 @@ export const reducer = (state = initialState, action) => {
         const index = newState.users.findIndex(user => user.id === action.id);
         selectedUser.name = action.name;
         const newArray = newState.users.splice(index, 1, changedUser);
-        return { ...newState, users: [ ...newArray ]}  
+        return { ...newState, users: [ ...newArray ]}
+
+      case 'REMOVE_USER':
+        const filteredUsers = newState.users.filter(user => user.id !== action.id)
+        return { ...newState, users: [ ...filteredUsers ] }
       
     default:
       return newState
