@@ -2,7 +2,8 @@ import {
   getDocs,
   addDoc,
   updateDoc,
-  doc
+  doc,
+  deleteDoc
 } from 'firebase/firestore';
 import { 
   createUserWithEmailAndPassword,
@@ -100,7 +101,17 @@ export const deleteProfile = async () => {
   try {
     const user = await auth.currentUser;
     await deleteUser(user)
-    console.log('završio sam brisanje');
+    console.log('završio sam brisanje: ', user);
+  } catch(e) {
+    console.log(e)
+  }
+}
+
+// DELETE USER DOCUMENT
+export const deleteUserDoc = async (id) => {
+  try {
+    const userDoc = await doc(usersColRef, id);
+    await deleteDoc(userDoc);
   } catch(e) {
     console.log(e)
   }

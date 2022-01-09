@@ -13,26 +13,9 @@ const Profile = () => {
   const [ editableElement, setEditableElement ] = useState(null);
   const [ showEditForm, setShowEditForm ] = useState(false)
 
-  const onClickForChange = e => {
-    const target = e.target.id;
-    setEditableElement(target);
-    setShowEditForm(true)
-  }
-
-  const closeEditForm = () => {
-    setShowEditForm(false);
-  }
-
-  const deleteProfile = () => {
-    console.log('kliknuo sam da obrišem profil');
-    // dispatch({ type: 'DELETE_PROFILE' })
-    // navigate('/');
-  }
-
   const loggedUser = useSelector(state => state.loggedIn);
   const users = useSelector(state => state.users);
   const selectedUser = users.find(user => user.userId === loggedUser);
-  console.log(selectedUser)
   const questions = useSelector(state => state.questions)
     .filter(questions => questions.author === loggedUser)
 
@@ -41,6 +24,21 @@ const Profile = () => {
   const userLikes = userQuestions
     .map(question => question.likes)
     .reduce((acc, curr) => acc.concat(curr), []);
+
+    const onClickForChange = e => {
+      const target = e.target.id;
+      setEditableElement(target);
+      setShowEditForm(true)
+    }
+  
+    const closeEditForm = () => {
+      setShowEditForm(false);
+    }
+  
+    const deleteProfile = () => {
+      dispatch({ type: 'DELETE_PROFILE', id: selectedUser.id })
+      // navigate('/');
+    }
   
   return (
     <div className="rounded m-3 mt-5 mx-auto col-md-12 position-relative">

@@ -72,6 +72,17 @@ export function* changeUserPasswordHandler({ password }) {
   }
 }
 
+// DELETE PROFILE HANDLER
+export function* deleteProfileHandler({ id }) {
+  try {
+    yield call(apiRequests.deleteProfile);
+    yield call(apiRequests.deleteUserDoc, id)
+    yield put({ type: 'REMOVE_USER', id })
+  } catch(e) {
+    console.log(e)
+  }
+}
+
 // FETCH QUESTION HANDLER
 export function* fetchQuestionsHandler() {
   try {
@@ -122,6 +133,7 @@ export default function* rootSaga() {
     takeLatest('USER_IN', userInHandler),
     takeLatest('USER_OUT', userOutHandler),
     takeLatest('CHANGE_USER_NAME', changeUserNameHanlder),
-    takeLatest('CHANGE_USER_PASSWORD', changeUserPasswordHandler)
+    takeLatest('CHANGE_USER_PASSWORD', changeUserPasswordHandler),
+    takeLatest('DELETE_PROFILE', deleteProfileHandler)
   ])
 }
