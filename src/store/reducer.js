@@ -56,6 +56,14 @@ export const reducer = (state = initialState, action) => {
 
       case 'SELECTED_QUESTION':
         return { ...newState, selectedQuestion: action.payload }
+
+      case 'NEW_ANSWER':
+        const selectedQuestion = newState.questions.find(q => q.id === action.payload.question);
+        const updatedQuestion = { ...selectedQuestion }
+        updatedQuestion.answers.push(action.payload);
+        const questionIndex = newState.questions.findIndex(q => q.id === action.payload.question)
+        const newQuestions = newState.questions.splice(questionIndex, 1, updatedQuestion)
+        return { ...newState, questions: [ ...newQuestions ] }
       
     default:
       return newState

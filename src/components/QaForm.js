@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 const QaForm = ({ question, element, user }) => {
@@ -7,9 +7,9 @@ const QaForm = ({ question, element, user }) => {
 
   const dispatch = useDispatch();
   
-  useEffect(() => {
-    setText(question);
-  }, [question])
+  // useEffect(() => {
+  //   setText(question);
+  // }, [question])
 
   const inputHandler = e => {
     const value = e.target.value;
@@ -42,6 +42,7 @@ const QaForm = ({ question, element, user }) => {
 
   const submitQuestionHandler = e => {
     e.preventDefault();
+    if(!text.trim()) return;
     if(element === 'question') {
       submitQuestion()
     } else {

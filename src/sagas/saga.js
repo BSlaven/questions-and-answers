@@ -130,6 +130,17 @@ export function* userOutHandler () {
   }
 }
 
+// ADD ANSWER HANDLER
+export function* addAnswerHandler({ payload }) {
+  try {
+    console.log(payload);
+    yield call(apiRequests.addAnswer, payload);
+    yield put({ type: 'NEW_ANSWER', payload })
+  } catch(e) {
+    console.log(e)
+  }
+}
+
 // ROOT SAGA EXPORTING ALL OTHER SAGAS
 export default function* rootSaga() {
   yield all([
@@ -144,6 +155,7 @@ export default function* rootSaga() {
     takeLatest('CHANGE_USER_NAME', changeUserNameHanlder),
     takeLatest('CHANGE_USER_PASSWORD', changeUserPasswordHandler),
     takeLatest('DELETE_PROFILE', deleteProfileHandler),
-    takeLatest('SELECT_QUESTION', selectQuestionHandler)
+    takeLatest('SELECT_QUESTION', selectQuestionHandler),
+    takeLatest('ADD_ANSWER', addAnswerHandler)
   ])
 }
