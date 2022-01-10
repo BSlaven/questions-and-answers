@@ -12,7 +12,7 @@ const QuestionPage = () => {
       <div className="row mt-5 col-sm-12 col-lg-8">
         <p className="fs-2 col-sm-12">Ovo je tekst pitanja</p>
       </div>
-      {userLoggedIn && <QaForm />}
+      {userLoggedIn && <QaForm user={userLoggedIn} element='answer' />}
       <div style={{maxWidth: '600px'}} className="mt-2">
         <Answer />
         <Answer />

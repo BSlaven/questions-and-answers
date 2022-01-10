@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-const QaForm = ({ question, user }) => {
+const QaForm = ({ question, element, user }) => {
 
   const [ text, setText ] = useState('');
 
@@ -16,8 +16,19 @@ const QaForm = ({ question, user }) => {
     setText(value);
   }
 
-  const submitQuestionHandler = e => {
-    e.preventDefault();
+  const submitAnswer = () => {
+    const newAnswer = {
+      text: text,
+      author: user,
+      likes: [],
+      dislikes: [],
+      createdAt: new Date(),
+      question: question.id
+    }
+    dispatch({ type: 'ADD_ANSWER', payload: newAnswer })
+  }
+
+  const submitQuestion = () => {
     const newQuestion = {
       text: text,
       answers: [],
@@ -26,8 +37,16 @@ const QaForm = ({ question, user }) => {
       author: user,
       createdAt: new Date()
     }
-    console.log('created user in the qa form', newQuestion);
     dispatch({ type: 'ADD_QUESTION', payload: newQuestion })
+  }
+
+  const submitQuestionHandler = e => {
+    e.preventDefault();
+    if(element === 'question') {
+      submitQuestion()
+    } else {
+      submitAnswer()
+    }
     setText('');
   }
   
