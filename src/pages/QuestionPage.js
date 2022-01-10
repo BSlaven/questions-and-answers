@@ -6,6 +6,8 @@ import QaForm from '../components/QaForm';
 const QuestionPage = () => {
 
   const userLoggedIn = useSelector(state => state.loggedIn)
+  const selectedQuestion = useSelector(state => state.selectedQuestion)
+  console.log('Pitanje koje je došlo u QuestionPage: ', selectedQuestion);
 
   return (
     <div style={{ color: "#1C2833" }} className="container">

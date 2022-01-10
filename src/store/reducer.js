@@ -53,6 +53,9 @@ export const reducer = (state = initialState, action) => {
       case 'REMOVE_USER':
         const filteredUsers = newState.users.filter(user => user.id !== action.id)
         return { ...newState, users: [ ...filteredUsers ] }
+
+      case 'SELECTED_QUESTION':
+        return { ...newState, selectedQuestion: action.payload }
       
     default:
       return newState

@@ -105,6 +105,15 @@ export function* addQuestionHandler({ payload }) {
   }
 }
 
+// SELECT QUESTION HANDLER
+export function* selectQuestionHandler({ payload }) {
+  try {
+    yield put({ type: 'SELECTED_QUESTION', payload });
+  } catch(e) {
+    console.log(e);
+  }
+}
+
 export function* userInHandler ({ id }) {
   try {
     yield put({ type: 'USER_IN_ASYNC', id })
@@ -134,6 +143,7 @@ export default function* rootSaga() {
     takeLatest('USER_OUT', userOutHandler),
     takeLatest('CHANGE_USER_NAME', changeUserNameHanlder),
     takeLatest('CHANGE_USER_PASSWORD', changeUserPasswordHandler),
-    takeLatest('DELETE_PROFILE', deleteProfileHandler)
+    takeLatest('DELETE_PROFILE', deleteProfileHandler),
+    takeLatest('SELECT_QUESTION', selectQuestionHandler)
   ])
 }
