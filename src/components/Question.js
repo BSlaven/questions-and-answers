@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { 
@@ -12,8 +12,10 @@ const Question = ({ question }) => {
   const dispatch = useDispatch()
   const navigate = useNavigate();
 
-  const clickQuestionHandler = e => {
-    console.log(question.id);
+  const user = useSelector(state => state.loggedIn);
+
+  const clickQuestionHandler = () => {
+    if(!user) return;
     dispatch({ type: 'SELECT_QUESTION', payload: question })
     navigate('/question');
   }

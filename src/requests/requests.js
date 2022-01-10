@@ -140,11 +140,9 @@ export const addQuestion = async (questionData) => {
 export const addAnswer = async (answer) => {
   try {
     const docRef = await doc(questionsColRef, answer.question);
-    console.log(docRef);
-    const updatedQuestion = await updateDoc(docRef, {
+    await updateDoc(docRef, {
       answers: arrayUnion(answer)
     })
-    console.log(updatedQuestion)
   } catch(e) {
     console.log(e)
   }
