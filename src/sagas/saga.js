@@ -133,7 +133,6 @@ export function* userOutHandler () {
 // ADD ANSWER HANDLER
 export function* addAnswerHandler({ payload }) {
   try {
-    console.log(payload);
     yield call(apiRequests.addAnswer, payload);
     yield put({ type: 'NEW_ANSWER', payload })
   } catch(e) {
