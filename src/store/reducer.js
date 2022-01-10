@@ -59,12 +59,9 @@ export const reducer = (state = initialState, action) => {
 
       case 'NEW_ANSWER':
         const selectedQuestion = {...newState.questions.find(q => q.id === action.payload.question)};
-        console.log('Ovo je izabrano pitanje', selectedQuestion)
         const questionIndex = newState.questions.findIndex(q => q.id === action.payload.question)
         const newAnswers = [...selectedQuestion.answers]
         newAnswers.push(action.payload)
-        console.log('Ovo su izmjenjeni odgovori: ', newAnswers)
-        console.log('Odgovori u stateu nakon dodavanja: ', newState.questions)
         selectedQuestion.answers = [ ...newAnswers ]
         const newQuestions = [ ...newState.questions ];
         newQuestions.splice(questionIndex, 1, selectedQuestion)
