@@ -10,9 +10,7 @@ const QuestionPage = () => {
   const questions = useSelector(state => state.questions)
   const myQuestion = questions.find(q => q.id === selectedQuestion.id);
   const answers = myQuestion.answers;
-  const date = new Date();
-  console.log(date);
-
+  
   return (
     <div style={{ color: "#1C2833" }} className="container">
       <div className="row mt-5 col-sm-12 col-lg-8">
