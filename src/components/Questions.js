@@ -15,13 +15,13 @@ const Questions = ({ displayQuestions }) => {
   useEffect(() => {
     dispatch({ type: 'FETCH_ALL_QUESTIONS' })
   }, [dispatch]);
-
+ 
   const userLoggedIn = useSelector(state => state.loggedIn)
 
   return (
     <div className="col-sm-12 col-md-5 m-3">
       <h3 className="my-4">Questions</h3>
-      {userLoggedIn && <QaForm user={userLoggedIn} />}
+      {userLoggedIn && <QaForm user={userLoggedIn} element="question" />}
       {questions && questionsToDisplay.map(question => <Question key={question.id} question={question} />)}
     </div>
   )

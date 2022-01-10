@@ -53,6 +53,23 @@ export const reducer = (state = initialState, action) => {
       case 'REMOVE_USER':
         const filteredUsers = newState.users.filter(user => user.id !== action.id)
         return { ...newState, users: [ ...filteredUsers ] }
+
+      case 'SELECTED_QUESTION':
+        return { ...newState, selectedQuestion: action.payload }
+
+      case 'NEW_ANSWER':
+        const selectedQuestion = {...newState.questions.find(q => q.id === action.payload.question)};
+        const questionIndex = newState.questions.findIndex(q => q.id === action.payload.question)
+        const newAnswers = [...selectedQuestion.answers]
+        newAnswers.push(action.payload)
+        selectedQuestion.answers = [ ...newAnswers ]
+        const newQuestions = [ ...newState.questions ];
+        newQuestions.splice(questionIndex, 1, selectedQuestion)
+
+        return {
+          ...newState,
+          questions: [ ...newQuestions ]
+        }
       
     default:
       return newState

@@ -3,7 +3,8 @@ import {
   addDoc,
   updateDoc,
   doc,
-  deleteDoc
+  deleteDoc,
+  arrayUnion
 } from 'firebase/firestore';
 import { 
   createUserWithEmailAndPassword,
@@ -133,5 +134,17 @@ export const fetchAllQuestions = async () => {
 export const addQuestion = async (questionData) => {
   const savedQuestion = await addDoc(questionsColRef, questionData)
   return savedQuestion
+}
+
+// ADD NEW ANSWER
+export const addAnswer = async (answer) => {
+  try {
+    const docRef = await doc(questionsColRef, answer.question);
+    await updateDoc(docRef, {
+      answers: arrayUnion(answer)
+    })
+  } catch(e) {
+    console.log(e)
+  }
 }
 

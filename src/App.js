@@ -26,7 +26,7 @@ function App() {
     return unsubscribe
   }, [dispatch])
   return (
-    <>
+    <div style={{backgroundColor: '#FDFEFE', minHeight: '100vh'}}>
       <BrowserRouter>
         <MainNav />
         <Routes>
@@ -37,7 +37,7 @@ function App() {
           <Route path="/register" element={<Register />} />
         </Routes>
       </BrowserRouter>
-    </>
+    </div>
   );
 }
 
