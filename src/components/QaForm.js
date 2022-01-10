@@ -22,7 +22,7 @@ const QaForm = ({ question, element, user }) => {
       author: user,
       likes: [],
       dislikes: [],
-      createdAt: new Date(),
+      createdAt: new Date().getTime(),
       question: question.id
     }
     dispatch({ type: 'ADD_ANSWER', payload: newAnswer })
@@ -35,7 +35,7 @@ const QaForm = ({ question, element, user }) => {
       likes: [],
       dislikes: [],
       author: user,
-      createdAt: new Date()
+      createdAt: new Date().getTime()
     }
     dispatch({ type: 'ADD_QUESTION', payload: newQuestion })
   }
