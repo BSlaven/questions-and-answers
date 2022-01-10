@@ -1,6 +1,6 @@
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { format } from 'date-fns'
 
 import { 
   BsHandThumbsDown,
@@ -14,6 +14,9 @@ const Question = ({ question }) => {
   const navigate = useNavigate();
 
   const user = useSelector(state => state.loggedIn);
+  const users = useSelector(state => state.users)
+  const author = users.find(user => user.userId === question.author)
+  const formatedDate = format(question.createdAt, 'dd/MMM/yyyy')
 
   const clickQuestionHandler = () => {
     if(!user) return;
@@ -23,6 +26,10 @@ const Question = ({ question }) => {
 
   return (
     <div className="card border-success mb-3">
+      <div style={{fontSize: '0.8rem'}} className="bg-white card-header d-flex justify-content-between">
+        <span className="text-primary">{author.name || author.email}</span>
+        <span className="text-secondary">{formatedDate}</span>
+      </div>
       <div className="card-body">
         <p className="card-text">{question.text}</p>
       </div>
