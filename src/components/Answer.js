@@ -37,23 +37,39 @@ const Answer = ({ answer }) => {
     })
   }
 
+  // const deleteAnswer = () => {
+  //   if(!user) return;
+  //   dispatch({
+  //     type: 'DELETE_ANSWER',
+  //     id: answer.answerId,
+  //     question: answer.question
+  //   })
+  // }
+
   return (
 
     <div className="card border-warning border rounded mb-2">
       <div style={{fontSize: '0.8rem'}} className="bg-white card-header d-flex justify-content-between">
-        <span className="text-primary">{answerAuthor.name}</span>
+        <span className="me-2 text-primary">{answerAuthor.name}</span>
         <span className="text-secondary">{formatedDate}</span>
+        {/* {answer.author === user && <div style={{color: '#808B96'}} className="ms-auto">
+          <span onClick={deleteAnswer}>
+            <TiDeleteOutline className="fs-4 ms-3" />
+          </span>
+        </div>} */}
       </div>
       <div className="card-body fs-5">
         <p>{answer.text}</p>
       </div>
       <div className="fs-6 card-footer d-flex justify-content-around">
-        <span 
+        <span
+          style={{cursor: 'pointer'}}
           onClick={addAnswerLike}
           className="text-success">
           <BsHandThumbsUp /> ({answer.likes.length})
         </span>
         <span 
+          style={{cursor: 'pointer'}}
           onClick={addAnswerDislike}
           className="text-danger">
           <BsHandThumbsDown /> ({answer.dislikes.length})

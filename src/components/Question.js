@@ -50,7 +50,9 @@ const Question = ({ question }) => {
         {author && <span className="me-2 text-primary">{author.name || 'No name'}</span>}
         <span className="text-secondary">{formatedDate}</span>
         {question.author === user && <div style={{color: '#808B96'}} className="ms-auto">
-          <span onClick={deleteQuestion}>
+          <span
+            style={{cursor: 'pointer'}}
+            onClick={deleteQuestion}>
             <TiDeleteOutline className="fs-4 ms-3" />
           </span>
         </div>}
@@ -60,16 +62,21 @@ const Question = ({ question }) => {
       </div>
       <div className="card-footer d-flex justify-content-around">
         <span
+          style={{cursor: 'pointer'}}
           onClick={addQuestionLike}
           className='text-primary'>
           <BsHandThumbsUp className="me-1" />
           {`(${question.likes.length})`}
         </span>
-        <span onClick={clickQuestionHandler} className='text-warning'>
+        <span
+          style={{cursor: 'pointer'}}
+          onClick={clickQuestionHandler}
+          className='text-warning'>
           <BsChatLeft className="me-1" />
           {`(${question.answers.length})`}
         </span>
         <span 
+          style={{cursor: 'pointer'}}
           onClick={addQuestionDislike}
           className='text-danger'>
           <BsHandThumbsDown className="me-1" />
