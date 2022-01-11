@@ -18,7 +18,7 @@ const QuestionPage = () => {
       </div>
       {userLoggedIn && <QaForm question={selectedQuestion} user={userLoggedIn} element='answer' />}
       <div style={{maxWidth: '600px'}} className="mt-2">
-        {answers && answers.map(answer => <Answer key={answer.id} answer={answer} />)}
+        {answers && answers.map(answer => <Answer key={answer.answerId} answer={answer} />)}
       </div>
     </div>
   )
