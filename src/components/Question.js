@@ -17,11 +17,25 @@ const Question = ({ question }) => {
   const users = useSelector(state => state.users);
   const author = users.find(user => user.userId === question.author)
   const formatedDate = format(question.createdAt, 'dd/MMM/yyyy')
+  const questionLikes = question.likes;
+  const questionDislikes = question.dislikes;
 
   const clickQuestionHandler = () => {
-    if(!user) return;
+    if(!user) return
     dispatch({ type: 'SELECT_QUESTION', payload: question })
     navigate('/question');
+  }
+
+  const addQuestionLike = e => {
+    if(!user || questionLikes.includes(user)) return;
+    dispatch({ type: 'ADD_QUESTION_LIKE', user, id: question.id })
+  }
+
+  const addQuestionDislike = e => {
+    if(!user || questionDislikes.includes(user)) {
+      return console.log('Ili nisi ulogovan ili si već dislajkovao.')
+    };
+    dispatch({ type: 'ADD_QUESTION_DISLIKE', user, id: question.id })
   }
 
   return (
@@ -34,7 +48,9 @@ const Question = ({ question }) => {
         <p className="card-text">{question.text}</p>
       </div>
       <div className="card-footer d-flex justify-content-around">
-        <span className='text-primary'>
+        <span
+          onClick={addQuestionLike}
+          className='text-primary'>
           <BsHandThumbsUp className="me-1" />
           {`(${question.likes.length})`}
         </span>
@@ -42,7 +58,9 @@ const Question = ({ question }) => {
           <BsChatLeft className="me-1" />
           {`(${question.answers.length})`}
         </span>
-        <span className='text-danger'>
+        <span 
+          onClick={addQuestionDislike}
+          className='text-danger'>
           <BsHandThumbsDown className="me-1" />
           {`(${question.dislikes.length})`}
         </span>

@@ -148,3 +148,26 @@ export const addAnswer = async (answer) => {
   }
 }
 
+// ADD QUESTION LIKE
+export const addQuestionLike = async (id, user) => {
+  try {
+    const docRef = await doc(questionsColRef, id)
+    await updateDoc(docRef, {
+      likes: arrayUnion(user)
+    })
+  } catch(e) {
+    console.log(e)
+  }
+}
+
+// ADD QUESTION DISLIKE
+export const addQuestionDislike = async (id, user) => {
+  try {
+    const docRef = await doc(questionsColRef, id)
+    await updateDoc(docRef, {
+      dislikes: arrayUnion(user)
+    })
+  } catch(e) {
+    console.log(e)
+  }
+}
