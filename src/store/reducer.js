@@ -1,7 +1,8 @@
 const initialState = {
   users: [],
   questions: [],
-  loggedIn: null
+  loggedIn: null,
+  selectedQuestion: null
 }
 
 export const reducer = (state = initialState, action) => {
