@@ -33,7 +33,7 @@ const UserForm = () => {
   }
   
   return (
-    <form className="col-sm-8 col-md-6" onSubmit={formSubmitHandler}>
+    <form className="col-sm-12 col-md-6" onSubmit={formSubmitHandler}>
       <div className="mb-3 text-start">
         <label htmlFor="name" className="px-0 form-control-lg col-form-label">Name</label>
         <input 
