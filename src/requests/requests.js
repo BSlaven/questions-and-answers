@@ -1,5 +1,6 @@
 import { 
   getDocs,
+  getDoc,
   addDoc,
   updateDoc,
   doc,
@@ -167,6 +168,23 @@ export const addQuestionDislike = async (id, user) => {
     await updateDoc(docRef, {
       dislikes: arrayUnion(user)
     })
+  } catch(e) {
+    console.log(e)
+  }
+}
+
+export const addAnswerLike = async (user, id, question) => {
+  try {
+    const docRef = await doc(questionsColRef, question);
+    const snapshot = await getDoc(docRef);
+    const document = snapshot.data();
+    const answers = [ ...document.answers ]
+    const oneAnswer = answers.find(a => a.answerId === id)
+    oneAnswer.likes.push(user);
+    await updateDoc(docRef, {
+      answers: answers
+    })
+    return answers
   } catch(e) {
     console.log(e)
   }
