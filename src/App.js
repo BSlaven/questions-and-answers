@@ -25,6 +25,7 @@ function App() {
 
     return unsubscribe
   }, [dispatch])
+  
   return (
     <div style={{backgroundColor: '#FDFEFE', minHeight: '100vh'}}>
       <BrowserRouter>
