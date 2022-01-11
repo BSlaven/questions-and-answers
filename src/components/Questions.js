@@ -8,6 +8,7 @@ const Questions = ({ displayQuestions }) => {
   let questions = useSelector(state => state.questions);
 
   const questionsToDisplay = displayQuestions || questions;
+  questionsToDisplay.sort((a, b) => b.createdAt - a.createdAt)
 
   const userLoggedIn = useSelector(state => state.loggedIn)
 

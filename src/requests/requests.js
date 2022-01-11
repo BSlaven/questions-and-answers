@@ -173,6 +173,16 @@ export const addQuestionDislike = async (id, user) => {
   }
 }
 
+// DELETE QUESTION
+export const deleteQuestion = async (id) => {
+  try {
+    const userDoc = await doc(questionsColRef, id);
+    await deleteDoc(userDoc);
+  } catch(e) {
+    console.log(e)
+  }
+}
+
 // ADD ANSWER LIKE
 export const addAnswerLike = async (user, id, question) => {
   try {
