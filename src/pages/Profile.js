@@ -41,7 +41,7 @@ const Profile = () => {
     }
   
   return (
-    <div className="rounded m-3 mt-5 mx-auto col-md-12 position-relative">
+    <div style={{maxWidth: '1200px'}} className="rounded m-3 mt-5 mx-auto col-md-12 position-relative">
       <button 
         style={{top: '-1rem', right: '1rem'}} 
         className="btn btn-outline-warning position-absolute"

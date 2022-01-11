@@ -24,7 +24,7 @@ const EditElement = ({ element, user, close }) => {
   }
   
   return (
-    <form className="position-relative border col-sm-10 col-md-5 m-5" onSubmit={submitChanges}>
+    <form className="position-relative border col-sm-12 col-lg-5 m-5" onSubmit={submitChanges}>
       <span 
         style={{right: 0, top: '-0.5rem'}} 
         className="btn fs-3 position-absolute"
@@ -54,7 +54,7 @@ const EditElement = ({ element, user, close }) => {
           className="form-control" />
       </div>}
       <div className="col-6 text-start">
-        <button type="submit" className="my-3 col-sm-12 btn btn-primary">Sign in</button>
+        <button type="submit" className="my-3 col-sm-12 btn btn-primary">Submit</button>
       </div>
     </form>
   )
