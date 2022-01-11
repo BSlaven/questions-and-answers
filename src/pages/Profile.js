@@ -41,17 +41,22 @@ const Profile = () => {
     }
   
   return (
-    <div style={{maxWidth: '1200px'}} className="rounded m-3 mt-5 mx-auto col-md-12 position-relative">
+    <div 
+      style={{maxWidth: '1200px'}}
+      className="rounded m-3 mt-5 mx-auto col-md-12 position-relative">
       <button 
         style={{top: '-1rem', right: '1rem'}} 
         className="btn btn-outline-warning position-absolute"
         onClick={deleteProfile}>Delete Profile</button>
-      <div className="row m-4 mt-5 d-flex container justify-content-center">
-      <div className="col-sm-12 col-lg-5 m-3" style={{color: "#2C3E50"}}>
+      <div 
+        className="row m-4 mt-5 d-flex container justify-content-center">
+      <div 
+        className="col-sm-12 col-lg-5 m-3"
+        style={{color: "#2C3E50"}}>
         <h3 style={{color: "#1C2833"}} className="my-4">User info</h3>
         <div className="d-flex align-items-center mb-3 gx-1">
           <p className="fs-4 m-0 col-5">Name:</p>
-          <p className="fs-4 m-0 col-3">{selectedUser.name || selectedUser.email}</p>
+          {selectedUser && <p className="fs-4 m-0 col-3">{selectedUser.name || selectedUser.email}</p>}
         </div>
         <div className="row mb-3 gx-2">
           <p className="fs-4 m-0 col-5">Likes:</p>
