@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 
 const QaForm = ({ question, element, user }) => {
 
@@ -23,6 +24,7 @@ const QaForm = ({ question, element, user }) => {
       likes: [],
       dislikes: [],
       createdAt: new Date().getTime(),
+      answerId: uuidv4(),
       question: question.id
     }
     dispatch({ type: 'ADD_ANSWER', payload: newAnswer })

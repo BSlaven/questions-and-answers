@@ -27,7 +27,7 @@ const Question = ({ question }) => {
   return (
     <div className="card border-success mb-3">
       <div style={{fontSize: '0.8rem'}} className="bg-white card-header d-flex justify-content-between">
-        <span className="text-primary">{author.name || author.email}</span>
+        {author && <span className="text-primary">{author.name || 'No name'}</span>}
         <span className="text-secondary">{formatedDate}</span>
       </div>
       <div className="card-body">
