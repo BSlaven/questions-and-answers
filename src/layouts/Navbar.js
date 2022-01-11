@@ -22,11 +22,12 @@ const MainNav = () => {
       </button>
       
       <div id="main-navbar" className="collapse navbar-collapse justify-content-end">
+        <Link to="/" className="me-3 text-light text-decoration-none">home</Link>
         {!loggedInUser ? <ul className='navbar-nav mr-auto'>
-          <li className='mx-2 px-3 nav-item bg-success p-2 rounded'>
+          <li className='me-3 px-3 nav-item bg-success p-2 rounded'>
             <Link to="/login" className="text-light text-decoration-none">login</Link>
           </li>
-          <li className='mx-2 nav-item p-2 border border-success rounded'>
+          <li className='me-3 nav-item p-2 border border-success rounded'>
             <Link to="/register" className="text-light text-decoration-none">register</Link>
           </li>
         </ul> : 
