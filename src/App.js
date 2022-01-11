@@ -25,6 +25,14 @@ function App() {
 
     return unsubscribe
   }, [dispatch])
+
+  useEffect(() => {
+    dispatch({ type: 'FETCH_ALL_QUESTIONS' })
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch({ type: 'FETCH_USERS'})
+  }, [dispatch]);
   
   return (
     <div style={{backgroundColor: '#FDFEFE', minHeight: '100vh'}}>

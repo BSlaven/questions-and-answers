@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { format } from 'date-fns';
 
 import { 
@@ -8,8 +8,28 @@ import {
 
 const Answer = ({ answer }) => {
 
+  const dispatch = useDispatch();
+
+  const user = useSelector(state => state.loggedIn);
   const answerAuthor = useSelector(state => state.users.find(user => user.userId === answer.author));
-  const formatedDate = format(answer.createdAt, 'dd/MMM/yyyy')
+  const answerLikes = answer.likes;
+  const answerDislikes = answer.dislikes;
+  const formatedDate = format(answer.createdAt, 'dd/MMM/yyyy');
+  
+
+  const addAnswerLike = e => {
+    if(!user || answerLikes.includes(user)) return;
+    dispatch({ 
+      type: 'ADD_ANSWER_LIKE',
+      user,
+      id: answer.answerId,
+      question: answer.question
+    })
+  }
+
+  // const addAnswerDislike = e => {
+  //   console.log(e.target);
+  // }
 
   return (
 
@@ -22,10 +42,14 @@ const Answer = ({ answer }) => {
         <p>{answer.text}</p>
       </div>
       <div className="fs-6 card-footer d-flex justify-content-around">
-        <span className="text-success">
+        <span 
+          onClick={addAnswerLike}
+          className="text-success">
           <BsHandThumbsUp /> ({answer.likes.length})
         </span>
-        <span className="text-danger">
+        <span 
+          // onClick={addAnswerDislike}
+          className="text-danger">
           <BsHandThumbsDown /> ({answer.dislikes.length})
         </span>
       </div>

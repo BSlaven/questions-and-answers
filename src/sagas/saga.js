@@ -160,6 +160,15 @@ export function* addQuestionDislikeHandler({ user, id }) {
   }
 }
 
+export function* addAnswerLikeHandler ({ user, id, question }) {
+  try {
+    const newAnswers = yield call(apiRequests.addAnswerLike, user, id, question)
+    yield put({ type: 'ANSWER_LIKE', answers: newAnswers, question })
+  } catch(e) {
+    console.log(e)
+  }
+}
+
 // ROOT SAGA EXPORTING ALL OTHER SAGAS
 export default function* rootSaga() {
   yield all([
@@ -178,5 +187,7 @@ export default function* rootSaga() {
     takeLatest('ADD_ANSWER', addAnswerHandler),
     takeLatest('ADD_QUESTION_LIKE', addQuestionLikeHandler),
     takeLatest('ADD_QUESTION_DISLIKE', addQuestionDislikeHandler),
+    takeLatest('ADD_ANSWER_LIKE', addAnswerLikeHandler),
+    // takeLatest('ADD_ANSWER_DISLIKE', addQuestionDislikeHandler),
   ])
 }
