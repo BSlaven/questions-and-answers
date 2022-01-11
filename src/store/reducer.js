@@ -106,6 +106,11 @@ export const reducer = (state = initialState, action) => {
         const answerDislikeQuestions = [ ...newState.questions ]
         answerDislikeQuestions.splice(aDislikeIndex, 1, answerDislikeQuestion);
         return { ...newState, questions: [...answerDislikeQuestions] }
+
+      case 'REMOVE_QUESTION':
+        const removeQuestionArray = [ ...newState.questions ];
+        const filteredQuestions = removeQuestionArray.filter(q => q.id !== action.id);
+        return { ...newState, questions: filteredQuestions }
       
     default:
       return newState

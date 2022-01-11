@@ -10,6 +10,7 @@ const QuestionPage = () => {
   const selectedQuestion = useSelector(state => state.selectedQuestion) || {};
   const myQuestion = questions.find(q => q.id === selectedQuestion.id) || {};
   const answers = myQuestion.answers || [];
+  answers.sort((a, b) => b.createdAt - a.createdAt);
   
   return (
     <div style={{ color: "#1C2833" }} className="container">

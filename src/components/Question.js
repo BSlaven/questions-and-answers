@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { format } from 'date-fns'
+import { format } from 'date-fns';
+import { TiDeleteOutline } from 'react-icons/ti'
 
 import { 
   BsHandThumbsDown,
@@ -38,11 +39,21 @@ const Question = ({ question }) => {
     dispatch({ type: 'ADD_QUESTION_DISLIKE', user, id: question.id })
   }
 
+  const deleteQuestion = (e) => {
+    if(!user) return;
+    dispatch({ type: 'DELETE_QUESTION', id: question.id })
+  }
+
   return (
     <div className="card border-success mb-3">
       <div style={{fontSize: '0.8rem'}} className="bg-white card-header d-flex justify-content-between">
-        {author && <span className="text-primary">{author.name || 'No name'}</span>}
+        {author && <span className="me-2 text-primary">{author.name || 'No name'}</span>}
         <span className="text-secondary">{formatedDate}</span>
+        {question.author === user && <div style={{color: '#808B96'}} className="ms-auto">
+          <span onClick={deleteQuestion}>
+            <TiDeleteOutline className="fs-4 ms-3" />
+          </span>
+        </div>}
       </div>
       <div className="card-body">
         <p className="card-text">{question.text}</p>

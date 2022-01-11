@@ -27,8 +27,6 @@ export function* registerUserHandler({email, password, name}) {
     // const savedUser = yield call(apiRequests.saveUser, user)
     yield call(apiRequests.saveUser, user)
     yield put({ type: 'REG_USER', user })
-    // yield put({ type: 'REG_USER', newUser: {...user, id: rawUser.uid } })
-    console.log('završio registraciju')
   } catch(e) {
     console.log(e)
   }
@@ -66,7 +64,6 @@ export function* changeUserNameHanlder({ name, id }) {
 export function* changeUserPasswordHandler({ password }) {
   try {
     yield call(apiRequests.changePassword, password)
-    console.log('password change done');
   } catch(e) {
     console.log(e)
   }
@@ -98,7 +95,6 @@ export function* addQuestionHandler({ payload }) {
   try {
     const savedQuestion = yield call(apiRequests.addQuestion, payload);
     const newQuestion = { ...payload, id: savedQuestion.id}
-    console.log('pitanje u sagi: ', newQuestion);
     yield put({ type: 'NEW_QUESTION', newQuestion });
   } catch(e) {
     console.log(e)
@@ -160,6 +156,16 @@ export function* addQuestionDislikeHandler({ user, id }) {
   }
 }
 
+// DELETE QUESTION HANDLER
+export function* deleteQuestionHandler({ id }) {
+  try {
+    yield call(apiRequests.deleteQuestion, id)
+    yield put({ type: 'REMOVE_QUESTION', id })
+  } catch(e) {
+    console.log(e)
+  }
+}
+
 export function* addAnswerLikeHandler ({ user, id, question }) {
   try {
     const newAnswers = yield call(apiRequests.addAnswerLike, user, id, question)
@@ -198,5 +204,6 @@ export default function* rootSaga() {
     takeLatest('ADD_QUESTION_DISLIKE', addQuestionDislikeHandler),
     takeLatest('ADD_ANSWER_LIKE', addAnswerLikeHandler),
     takeLatest('ADD_ANSWER_DISLIKE', addAnswerDislikeHandler),
+    takeLatest('DELETE_QUESTION', deleteQuestionHandler)
   ])
 }
