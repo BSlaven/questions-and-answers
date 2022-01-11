@@ -14,7 +14,7 @@ const Question = ({ question }) => {
   const navigate = useNavigate();
 
   const user = useSelector(state => state.loggedIn);
-  const users = useSelector(state => state.users)
+  const users = useSelector(state => state.users);
   const author = users.find(user => user.userId === question.author)
   const formatedDate = format(question.createdAt, 'dd/MMM/yyyy')
 
