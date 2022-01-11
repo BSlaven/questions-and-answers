@@ -10,9 +10,11 @@ const UserForm = () => {
   const [name, setName ] = useState('');
   const [email, setEmail ] = useState('');
   const [password, setPassword ] = useState('');
+  const [ isValid, setIsValid ] = useState(true);
+  const [ error, setError ] = useState('')
 
   const inputHandler = e => {
-    const value = e.target.value;
+    const value = e.target.value.trim();
     const targetElement = e.target.name;
     switch (targetElement) {
       case 'name':
@@ -26,8 +28,21 @@ const UserForm = () => {
     }
   }
 
+  const validate = () => {
+    if(password.length < 6) {
+      setError('Password must have at least 6 characters!')
+      setIsValid(false)
+    } else {
+      setError('');
+      setIsValid(true)
+    }
+    return isValid
+  }
+
   const formSubmitHandler = e => {
     e.preventDefault();
+    const valid = validate();
+    if(!valid) return;
     dispatch({ type: 'REGISTER_USER', email, password, name });
     navigate('/');
   }
@@ -67,6 +82,7 @@ const UserForm = () => {
           placeholder="Enter your password..." 
           className="form-control" />
       </div>
+      {!isValid && <p style={{fontSize: '0.8rem'}} className="fw-bold text-start text-danger">{error}</p>}
       <div className="col-6 text-start">
         <button type="submit" className="my-3 col-6 btn btn-primary">Submit</button>
       </div>
