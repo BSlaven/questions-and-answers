@@ -13,7 +13,7 @@ const Answer = ({ answer }) => {
   const user = useSelector(state => state.loggedIn);
   const answerAuthor = useSelector(state => state.users.find(user => user.userId === answer.author));
   const answerLikes = answer.likes;
-  // const answerDislikes = answer.dislikes;
+  const answerDislikes = answer.dislikes;
   const formatedDate = format(answer.createdAt, 'dd/MMM/yyyy');
   
 
@@ -27,9 +27,15 @@ const Answer = ({ answer }) => {
     })
   }
 
-  // const addAnswerDislike = e => {
-  //   console.log(e.target);
-  // }
+  const addAnswerDislike = e => {
+    if(!user || answerDislikes.includes(user)) return;
+    dispatch({
+      type: 'ADD_ANSWER_DISLIKE',
+      user,
+      id: answer.answerId,
+      question: answer.question
+    })
+  }
 
   return (
 
@@ -48,7 +54,7 @@ const Answer = ({ answer }) => {
           <BsHandThumbsUp /> ({answer.likes.length})
         </span>
         <span 
-          // onClick={addAnswerDislike}
+          onClick={addAnswerDislike}
           className="text-danger">
           <BsHandThumbsDown /> ({answer.dislikes.length})
         </span>

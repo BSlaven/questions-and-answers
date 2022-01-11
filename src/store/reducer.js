@@ -97,6 +97,14 @@ export const reducer = (state = initialState, action) => {
         const answerLikeQuestions = [...newState.questions];
         answerLikeQuestions.splice(aLikeIndex, 1, answerLikeQuestion);
         return { ...newState, questions: [...answerLikeQuestions] }
+
+      case 'ANSWER_DISLIKE':
+        const answerDislikeQuestion = {...newState.questions.find(q => q.id === action.question)}
+        const aDislikeIndex = newState.questions.findIndex(q => q.id === action.question);
+        answerDislikeQuestion.answers = action.answers;
+        const answerDislikeQuestions = [ ...newState.questions ]
+        answerDislikeQuestions.splice(aDislikeIndex, 1, answerDislikeQuestion);
+        return { ...newState, questions: [...answerDislikeQuestions] }
       
     default:
       return newState
