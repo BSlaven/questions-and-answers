@@ -30,7 +30,7 @@ const Login = () => {
   
   return (
     <div className="container row mx-auto col-12 my-5 d-flex justify-content-around">
-      <form id="login-form" className="col-sm-10" onSubmit={submitHandler}>
+      <form style={{maxWidth: '500px'}} id="login-form" className="col-sm-10" onSubmit={submitHandler}>
         <div className="mb-3 text-start">
           <label htmlFor="email" className="fw-bold px-0 form-control-lg col-form-label">Email</label>
           <input
