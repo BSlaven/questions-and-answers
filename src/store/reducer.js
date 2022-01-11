@@ -111,6 +111,14 @@ export const reducer = (state = initialState, action) => {
         const removeQuestionArray = [ ...newState.questions ];
         const filteredQuestions = removeQuestionArray.filter(q => q.id !== action.id);
         return { ...newState, questions: filteredQuestions }
+
+      case 'REMOVE_ANSWER':
+        const removeAnswerArray = [ ...newState.questions ];
+        const selQuestion = { ...newState.questions.find(q => q.id === action.question)}
+        const selIndex = newState.questions.findIndex(q => q.id === action.question)
+        const selAnswers = [...selQuestion.answers.filter(a => a.answerId !== action.id)]
+        removeAnswerArray.splice(selIndex, 1, selAnswers)
+        return { ...newState, questions: [...removeAnswerArray]}
       
     default:
       return newState

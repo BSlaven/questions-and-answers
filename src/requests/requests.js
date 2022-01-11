@@ -218,3 +218,18 @@ export const addAnswerDislike = async (user, id, question) => {
     console.log(e)
   }
 }
+
+// DELETE ANSWER
+export const deleteAnswer = async (id, question) => {
+  try {
+    const docRef = await doc(questionsColRef, question);
+    const snapshot = await getDoc(docRef);
+    const document = snapshot.data();
+    const newAnswers = document.answers.filter(a => a.answerId !== id);
+    await updateDoc(docRef, {
+      answers: newAnswers
+    })
+  } catch(e) {
+    console.log(e)
+  }
+}

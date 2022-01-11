@@ -184,6 +184,15 @@ export function* addAnswerDislikeHandler ({ user, id, question }) {
   }
 }
 
+export function* deleteAnswerHandler({ id, question }) {
+  try {
+    yield call(apiRequests.deleteAnswer, id, question)
+    yield put({ type: 'REMOVE_ANSWER', id, question });
+  } catch(e) {
+    console.log(e)
+  }
+}
+
 // ROOT SAGA EXPORTING ALL OTHER SAGAS
 export default function* rootSaga() {
   yield all([
@@ -204,6 +213,7 @@ export default function* rootSaga() {
     takeLatest('ADD_QUESTION_DISLIKE', addQuestionDislikeHandler),
     takeLatest('ADD_ANSWER_LIKE', addAnswerLikeHandler),
     takeLatest('ADD_ANSWER_DISLIKE', addAnswerDislikeHandler),
-    takeLatest('DELETE_QUESTION', deleteQuestionHandler)
+    takeLatest('DELETE_QUESTION', deleteQuestionHandler),
+    takeLatest('DELETE_ANSWER', deleteAnswerHandler)
   ])
 }
