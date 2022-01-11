@@ -13,7 +13,7 @@ const Answer = ({ answer }) => {
   const user = useSelector(state => state.loggedIn);
   const answerAuthor = useSelector(state => state.users.find(user => user.userId === answer.author));
   const answerLikes = answer.likes;
-  const answerDislikes = answer.dislikes;
+  // const answerDislikes = answer.dislikes;
   const formatedDate = format(answer.createdAt, 'dd/MMM/yyyy');
   
 
