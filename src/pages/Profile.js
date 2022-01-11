@@ -13,15 +13,25 @@ const Profile = () => {
   const [ editableElement, setEditableElement ] = useState(null);
   const [ showEditForm, setShowEditForm ] = useState(false)
 
+  const allQuestions = useSelector(state => state.questions)
   const loggedUser = useSelector(state => state.loggedIn);
   const users = useSelector(state => state.users);
   const selectedUser = users.find(user => user.userId === loggedUser);
   const questions = useSelector(state => state.questions)
     .filter(questions => questions.author === loggedUser)
 
-  const userQuestions = questions.filter(question => question.author === loggedUser)
+  const userQuestions = questions.filter(question => question.author === loggedUser);
 
-  const userLikes = userQuestions
+  const userAnswers = allQuestions
+    .map(q => q.answers)
+    .reduce((acc, curr) => acc.concat(curr), [])
+    .filter(a => a.author === loggedUser)
+  
+  const userAnswersLikes = userAnswers
+    .map(a => a.likes)
+    .reduce((acc, curr) => acc.concat(curr), [])
+
+  const userQuestionsLikes = userQuestions
     .map(question => question.likes)
     .reduce((acc, curr) => acc.concat(curr), []);
 
@@ -60,7 +70,10 @@ const Profile = () => {
         </div>
         <div className="row mb-3 gx-2">
           <p className="fs-4 m-0 col-5">Likes:</p>
-          <p className="fs-4 m-0 col-5">{userLikes.length}</p>
+          <p 
+            className="fs-4 m-0 col-5">
+            {userQuestionsLikes.length + userAnswersLikes.length}
+          </p>
         </div>
         <div className="row mb-3 gx-2">
           <p className="fs-4 m-0 col-5">Questions:</p>
@@ -68,7 +81,7 @@ const Profile = () => {
         </div>
         <div className="row mb-3 gx-2">
           <p className="fs-4 m-0 col-5">Answers:</p>
-          <p className="fs-4 m-0 col-5">{userQuestions.length}</p>
+          <p className="fs-4 m-0 col-5">{userAnswers.length}</p>
         </div>
         <button 
           onClick={onClickForChange}
