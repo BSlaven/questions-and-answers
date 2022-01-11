@@ -140,6 +140,26 @@ export function* addAnswerHandler({ payload }) {
   }
 }
 
+// ADD LIKE TO A QUESTION HANDLER
+export function* addQuestionLikeHandler({ user, id }) {
+  try {
+    yield call(apiRequests.addQuestionLike, id, user);
+    yield put({ type: 'QUESTION_LIKE', id, user })
+  } catch(e) {
+    console.log(e)
+  }
+}
+
+// ADD DISLIKE TO A QUESTION HANDLER
+export function* addQuestionDislikeHandler({ user, id }) {
+  try {
+    yield call(apiRequests.addQuestionDislike, id, user);
+    yield put({ type: 'QUESTION_DISLIKE', id, user })
+  } catch(e) {
+    console.log(e)
+  }
+}
+
 // ROOT SAGA EXPORTING ALL OTHER SAGAS
 export default function* rootSaga() {
   yield all([
@@ -155,6 +175,8 @@ export default function* rootSaga() {
     takeLatest('CHANGE_USER_PASSWORD', changeUserPasswordHandler),
     takeLatest('DELETE_PROFILE', deleteProfileHandler),
     takeLatest('SELECT_QUESTION', selectQuestionHandler),
-    takeLatest('ADD_ANSWER', addAnswerHandler)
+    takeLatest('ADD_ANSWER', addAnswerHandler),
+    takeLatest('ADD_QUESTION_LIKE', addQuestionLikeHandler),
+    takeLatest('ADD_QUESTION_DISLIKE', addQuestionDislikeHandler),
   ])
 }
