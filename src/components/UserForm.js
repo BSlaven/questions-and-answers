@@ -68,7 +68,7 @@ const UserForm = () => {
           className="form-control" />
       </div>
       <div className="col-6 text-start">
-        <button type="submit" className="my-3 col-6 btn btn-primary">Sign in</button>
+        <button type="submit" className="my-3 col-6 btn btn-primary">Submit</button>
       </div>
     </form>
   )
