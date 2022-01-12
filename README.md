@@ -16,5 +16,6 @@
 ## Some key points
 - For the number of likes and dislikes I decided instead of simply counting them to actually add ids of user who liked or disliked a question. This allowed me to prevent a user from liking/disliking a question if they already did that.
 - Reducer and saga functions could definitely be separated into files for better folder structure.
+- Generally speaking folder structure in this app has room for improvement.
 - As far as the look of the app is concerned I did what I could with the limitations of a CSS framework. I added minor inline style changes where I really needed it.
 - This was my first time using redux-saga, so that was a challene in itself.
