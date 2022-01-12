@@ -5,7 +5,6 @@ import User from './User';
 const Users = () => {
 
   let users = useSelector(state => state.users);
-  console.log('My users: ', users)
 
   return (
     <div className="col-sm-12 col-lg-5 m-3">

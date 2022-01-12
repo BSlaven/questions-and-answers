@@ -1,8 +1,7 @@
 const initialState = {
   users: [],
   questions: [],
-  loggedIn: null,
-  selectedQuestion: null
+  loggedIn: null
 }
 
 export const reducer = (state = initialState, action) => {
@@ -54,9 +53,6 @@ export const reducer = (state = initialState, action) => {
       case 'REMOVE_USER':
         const filteredUsers = newState.users.filter(user => user.id !== action.id)
         return { ...newState, users: [ ...filteredUsers ] }
-
-      case 'SELECTED_QUESTION':
-        return { ...newState, selectedQuestion: action.payload }
 
       case 'NEW_ANSWER':
         const selectedQuestion = {...newState.questions.find(q => q.id === action.payload.question)};
@@ -116,8 +112,11 @@ export const reducer = (state = initialState, action) => {
         const removeAnswerArray = [ ...newState.questions ];
         const selQuestion = { ...newState.questions.find(q => q.id === action.question)}
         const selIndex = newState.questions.findIndex(q => q.id === action.question)
-        const selAnswers = [...selQuestion.answers.filter(a => a.answerId !== action.id)]
-        removeAnswerArray.splice(selIndex, 1, selAnswers)
+        const selAnswers = [...selQuestion.answers]
+        const filAnswers = selAnswers.filter(a => a.answerId !== action.id)
+        console.log(filAnswers);
+        selQuestion.answers = filAnswers
+        removeAnswerArray.splice(selIndex, 1, selQuestion)
         return { ...newState, questions: [...removeAnswerArray]}
       
     default:
