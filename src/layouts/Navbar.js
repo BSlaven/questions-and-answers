@@ -1,6 +1,9 @@
 import { AiOutlineHome } from 'react-icons/ai';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import Container from 'react-bootstrap/Container'
 
 const MainNav = () => {
 
@@ -15,37 +18,40 @@ const MainNav = () => {
   }
   
   return (
-    <nav className="navbar navbar-dark bg-dark p-3 mb-3 navbar-expand-sm d-flex align-items-center">
-      <Link to="/" className="navbar-brand text-white text-decoration-none">
-        <AiOutlineHome className='fs-4 mb-1 text-white' />
-      </Link>
-      <button type='button' className="navbar-toggler" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
-        <span className='navbar-toggler-icon'></span>
-      </button>
-      
-      <div id="main-navbar" className="collapse navbar-collapse justify-content-end">
-        <Link to="/" className="mx-4 text-light text-decoration-none">home</Link>
-        {!loggedInUser ? <ul className='navbar-nav mr-auto'>
-          <li className='mx-4 px-3 nav-item bg-success p-2 rounded'>
-            <Link to="/login" className="text-light text-decoration-none">login</Link>
-          </li>
-          <li className='mx-4 nav-item p-2 border border-success rounded'>
-            <Link to="/register" className="text-light text-decoration-none">register</Link>
-          </li>
-        </ul> : 
-        <ul className='navbar-nav mr-auto'>
-          <li className='mx-2 me-4 px-3 nav-item p-2 rounded'>
-            <Link to="/profile" className="text-light text-decoration-none">
-              profile
+    <Navbar expand="lg" className="navbar navbar-dark bg-dark p-3 mb-3 navbar-expand-sm d-flex align-items-center">
+      <Container>
+        <Link to="/" className="navbar-brand text-white text-decoration-none">
+          <AiOutlineHome className='fs-4 mb-1 text-white' />
+        </Link>
+        <Navbar.Toggle aria-controls="my-navbar" />
+        <Navbar.Collapse id="my-navbar">
+          <Nav className="ms-auto">
+            <Link to="/" className="m-3 my-auto text-light text-decoration-none">
+              home
             </Link>
-          </li>
-          <button 
-            type='button'
-            className="btn btn-outline-danger"
-            onClick={logoutUser}>logout</button>
-        </ul> }
-      </div>
-    </nav>
+            {!loggedInUser ? <ul className='navbar-nav mr-auto'>
+            <li className='m-3 nav-item'>
+              <Link to="/login" className="text-light text-decoration-none">login</Link>
+            </li>
+            <li className='m-3 nav-item'>
+              <Link to="/register" className="text-light text-decoration-none">register</Link>
+            </li>
+          </ul> : 
+            <ul className='navbar-nav mr-auto'>
+              <li className='m-3 my-auto nav-item'>
+                <Link to="/profile" className="text-light text-decoration-none">
+                  profile
+                </Link>
+              </li>
+              <button 
+                type='button'
+                className="btn btn-outline-danger m-3 nav-item"
+                onClick={logoutUser}>logout</button>
+            </ul> }
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   )
 }
 
