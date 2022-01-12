@@ -23,8 +23,7 @@ const Question = ({ question }) => {
 
   const clickQuestionHandler = () => {
     if(!user) return
-    dispatch({ type: 'SELECT_QUESTION', payload: question })
-    navigate('/question');
+    navigate(`/question/${question.id}`);
   }
 
   const addQuestionLike = e => {
@@ -33,9 +32,7 @@ const Question = ({ question }) => {
   }
 
   const addQuestionDislike = e => {
-    if(!user || questionDislikes.includes(user)) {
-      return console.log('Ili nisi ulogovan ili si već dislajkovao.')
-    };
+    if(!user || questionDislikes.includes(user)) return
     dispatch({ type: 'ADD_QUESTION_DISLIKE', user, id: question.id })
   }
 

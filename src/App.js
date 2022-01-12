@@ -42,7 +42,7 @@ function App() {
         <MainNav />
         <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="/question" element={<QuestionPage />} />
+          <Route path="/question/:id" element={<QuestionPage />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

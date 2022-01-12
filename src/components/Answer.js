@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { format } from 'date-fns';
 
+import { TiDeleteOutline } from 'react-icons/ti';
 import { 
   BsHandThumbsDown,
   BsHandThumbsUp
@@ -37,26 +38,26 @@ const Answer = ({ answer }) => {
     })
   }
 
-  // const deleteAnswer = () => {
-  //   if(!user) return;
-  //   dispatch({
-  //     type: 'DELETE_ANSWER',
-  //     id: answer.answerId,
-  //     question: answer.question
-  //   })
-  // }
+  const deleteAnswer = () => {
+    if(!user) return;
+    dispatch({
+      type: 'DELETE_ANSWER',
+      id: answer.answerId,
+      question: answer.question
+    })
+  }
 
   return (
 
     <div className="card border-warning border rounded mb-2">
       <div style={{fontSize: '0.8rem'}} className="bg-white card-header d-flex justify-content-between">
-        <span className="me-2 text-primary">{answerAuthor.name}</span>
+        {answerAuthor && <span className="me-2 text-primary">{answerAuthor.name}</span>}
         <span className="text-secondary">{formatedDate}</span>
-        {/* {answer.author === user && <div style={{color: '#808B96'}} className="ms-auto">
+        {answer.author === user && <div style={{color: '#808B96'}} className="ms-auto">
           <span onClick={deleteAnswer}>
             <TiDeleteOutline className="fs-4 ms-3" />
           </span>
-        </div>} */}
+        </div>}
       </div>
       <div className="card-body fs-5">
         <p>{answer.text}</p>
