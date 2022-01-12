@@ -12,8 +12,6 @@ import QuestionPage from './pages/QuestionPage';
 
 function App() {
 
-  console.log('App component rerenders')
-
   const dispatch = useDispatch();
 
   useEffect(() => {
