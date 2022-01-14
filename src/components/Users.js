@@ -4,7 +4,15 @@ import User from './User';
 
 const Users = () => {
 
-  let users = useSelector(state => state.users);
+  const users = useSelector(state => state.users);
+  const questions = useSelector(state => state.questions);
+
+  const countQuestionsForUser = (user) => {
+    const filtered = questions.filter(q => q.author === user.userId)
+    return filtered.length
+  }
+
+  users.sort((a, b) => countQuestionsForUser(b) - countQuestionsForUser(a))
 
   return (
     <div className="col-sm-12 col-lg-5 m-3">
