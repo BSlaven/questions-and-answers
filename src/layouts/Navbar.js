@@ -26,15 +26,20 @@ const MainNav = () => {
         <Navbar.Toggle aria-controls="my-navbar" />
         <Navbar.Collapse id="my-navbar">
           <Nav className="ms-auto">
-            <Link to="/" className="m-3 my-auto text-light text-decoration-none">
+            <Link to="/" className="py-3 mx-3 my-auto text-light text-decoration-none">
               home
             </Link>
             {!loggedInUser ? <ul className='navbar-nav mr-auto'>
-            <li className='m-3 nav-item'>
-              <Link to="/login" className="text-light text-decoration-none">login</Link>
+            <li className='py-3 mx-3 nav-item'>
+              <Link 
+                to="/login"
+                className="text-light text-decoration-none">login</Link>
             </li>
-            <li className='m-3 nav-item'>
-              <Link to="/register" className="text-light text-decoration-none">register</Link>
+            <li className='py-3 mx-3 nav-item'>
+              <Link
+                style={{color: '#25B82E'}}
+                to="/register"
+                className="text-decoration-none">register</Link>
             </li>
           </ul> : 
             <ul className='navbar-nav mr-auto'>
@@ -43,10 +48,12 @@ const MainNav = () => {
                   profile
                 </Link>
               </li>
-              <button 
-                type='button'
-                className="btn btn-outline-danger m-3 nav-item"
-                onClick={logoutUser}>logout</button>
+              <li className="m-3 my-auto nav-item">
+                <span 
+                  type='button'
+                  className="text-danger my-3 ms-0 nav-item"
+                  onClick={logoutUser}>logout</span>      
+              </li>
             </ul> }
           </Nav>
         </Navbar.Collapse>
